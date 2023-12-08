@@ -19,6 +19,10 @@ def get_directory(input_dir: str):
     return files
 
 
+class FileWrongFormat(Exception):
+    pass
+
+
 def file_duration(file_path: Path) -> float:
     info = ffmpeg.probe(file_path)
     return float(info["format"]["duration"])
