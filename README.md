@@ -1,6 +1,6 @@
-# whisper-trans
+# Transcriber
 
-## Use of Whisper
+## Use of transcriber
 
 ```bash
 $ pip install -r requirements.txt
@@ -9,13 +9,13 @@ $ pip install -r requirements.txt
 or with docker
 
 ```bash
-$ docker build --tag whispertranscribtion:latest .
+$ docker build --tag aautranscriber:latest .
 ```
 
 ## Usage
 
 ```bash
-docker run -it --rm -v $(PWD):/app whispertranscribtion:latest -o ./output -i inputfile1.wav inputfile2.wav --threads 4
+docker run -it --rm -v $(PWD):/app aautranscriber:latest -o ./output -i inputfile1.wav inputfile2.wav --threads 4
 ```
 
 ## usage:
