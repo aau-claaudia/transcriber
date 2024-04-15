@@ -2,8 +2,16 @@
 
 ## Use of transcriber
 
+Run pip install faster-whisper before pip install -r requirements.txt (problem with whisperx packaging)
+```bash
+$ pip install faster-whisper
+```
 ```bash
 $ pip install -r requirements.txt
+```
+and
+```bash
+$ pip install -e .
 ```
 
 or with docker
