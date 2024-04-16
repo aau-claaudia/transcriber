@@ -11,15 +11,6 @@ from whispaau.archive import archiving
 from whispaau.cli_utils import parse_arguments
 from whispaau.logging import Logger
 from whispaau.utils import get_writer
-
-# set the huggingface cache directories to directory with pre-downloaded model
-# these settings must be made before importing torch
-import os
-PATH = '~/.cache/huggingface/predownloadedmodels/'
-os.environ['TRANSFORMERS_CACHE'] = PATH
-os.environ['HF_HOME'] = PATH
-os.environ['HF_DATASETS_CACHE'] = PATH
-os.environ['TORCH_HOME'] = PATH
 import torch
 
 
