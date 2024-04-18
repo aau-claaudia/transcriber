@@ -35,7 +35,7 @@ def cli(args: dict[str, Any]) -> None:
     else:
         device = torch.device("cpu")
 
-    transcribe_arguments = {}
+    transcribe_arguments = {"fp16": False}
     if args.get("language", None):
         transcribe_arguments["language"] = args.get("language")
 
