@@ -5,7 +5,7 @@
 from . import writers
 
 from pathlib import Path
-from whisper import utils
+from whisperx import utils
 from typing import TextIO
 
 WRITERS = {

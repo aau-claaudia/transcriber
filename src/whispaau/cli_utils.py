@@ -7,7 +7,7 @@ from typing import Optional, Any
 import argparse
 import ffmpeg
 from datetime import datetime
-from whisper.utils import optional_int
+from whisperx.utils import optional_int
 
 
 def get_directory(input_dir: str):
@@ -32,12 +32,6 @@ def format_spend_time(start: int, end: int) -> str:
     spend_time = (end - start) / 1e9
     dt = datetime.utcfromtimestamp(spend_time)
     return dt.strftime("%H:%M:%S.%f")
-
-
-def print_v(text: str | Path, verbose=False) -> None:
-    if verbose:
-        print(text)
-        sys.stdout.flush()
 
 
 def aggregate_paths(file_paths: list[Path], directory_paths: list[Path]) -> set[Path]:

@@ -4,7 +4,7 @@ from datetime import datetime
 from typing import TextIO
 
 import docx
-from whisper.utils import ResultWriter, format_timestamp
+from whisperx.utils import ResultWriter, format_timestamp
 
 
 class WriteCSV(ResultWriter):
@@ -27,7 +27,7 @@ class WriteDOTE(ResultWriter):
             line_add = {
                 "startTime": format_timestamp(line["start"], True),
                 "endTime": format_timestamp(line["end"], True),
-                "speakerDesignation": "",
+                "speakerDesignation": line["speaker"].strip(),
                 "text": line["text"].strip(),
             }
             interface["lines"].append(line_add)
@@ -70,6 +70,8 @@ class WriteDOCX(ResultWriter):
         for line in result["segments"]:
             time = p.add_run(self.format_time(line["start"], line["end"], max_time))
             time.italic = True
+            p.add_run("\t")
+            p.add_run(f'{line["speaker"].strip()}\n')
             p.add_run("\t")
             p.add_run(f'{line["text"].strip()}\n')
         document.save(file.name)
