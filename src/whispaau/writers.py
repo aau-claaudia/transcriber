@@ -24,11 +24,12 @@ class WriteDOTE(ResultWriter):
     def format_result(result: dict):
         interface = {"lines": []}
         for line in result["segments"]:
-            line_add = {
+            speaker, text = extract_speaker_and_text(line)
+            line_add = {                
                 "startTime": format_timestamp(line["start"], True),
                 "endTime": format_timestamp(line["end"], True),
-                "speakerDesignation": line["speaker"].strip(),
-                "text": line["text"].strip(),
+                "speakerDesignation": speaker.strip(),
+                "text": text.strip(),
             }
             interface["lines"].append(line_add)
         return interface
@@ -68,10 +69,26 @@ class WriteDOCX(ResultWriter):
         p = document.add_paragraph()
         max_time = result["segments"][-1]["end"]
         for line in result["segments"]:
+            speaker, text = extract_speaker_and_text(line)
             time = p.add_run(self.format_time(line["start"], line["end"], max_time))
             time.italic = True
             p.add_run("\t")
-            p.add_run(f'{line["speaker"].strip()}\n')
+            p.add_run(f'{speaker.strip()}\n')
             p.add_run("\t")
-            p.add_run(f'{line["text"].strip()}\n')
+            p.add_run(f'{text.strip()}\n')
         document.save(file.name)
+
+
+def extract_speaker_and_text(line):
+    # if the algorithm was unable to determine the speaker, the line object will not have a speaker object
+    if "speaker" in line:
+        speaker = line["speaker"]
+    else:
+        speaker = "Undetermined speaker"
+    # Also guard against missing texts if the algorithm was unable to transcribe the segment
+    if "text" in line:
+        text = line["text"]
+    else:
+        text = "Undetermined text"
+
+    return speaker, text
