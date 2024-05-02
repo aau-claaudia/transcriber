@@ -15,9 +15,9 @@ pyzipper>=0.3.6
 regex>=2022.10.31
 requests>=2
 tokenizers==0.13.2
-torch==2.0.0
-torchvision==0.15.1
-torchaudio==2.0.1
+torch>2.0.0
+torchvision>=0.15.1
+torchaudio>=2.0.1
 tqdm==4.64.1
 transformers>=4.25.1
 typing_extensions==4.4.0
