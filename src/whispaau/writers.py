@@ -7,11 +7,22 @@ import docx
 from whisperx.utils import ResultWriter, format_timestamp
 
 
+def get_field_names(result: dict) -> list[str]:
+    # make sure that the CSV header contains the 'speaker' header even though the first line has no speaker
+    # if there is no speaker in the segment, try to take the keys from the next line
+    # we don't want to hard code the speaker key into a fixed position in the header list
+    for i in range(len(result)):
+        if 'speaker' in result["segments"][i]:
+            return list(result["segments"][i].keys())
+    # if none of the lines had a speaker then just return the keys from the first line
+    return list(result["segments"][0].keys())
+
+
 class WriteCSV(ResultWriter):
     extension: str = "csv"
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        fieldnames: list[str] = list(result["segments"][0].keys())
+        fieldnames: list[str] = get_field_names(result)
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(result["segments"])
