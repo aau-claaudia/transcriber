@@ -1,0 +1,24 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.48,
+      "text": " Må du have ved shorts på, når heden rammer kontoret?",
+      "id": 0,
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    },
+    {
+      "start": 4.48,
+      "end": 8.00,
+      "text": " Det kan da godt være at jeg må.",
+      "id": 1,
+      "speaker": " Anders And",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    }
+  ],
+  "language": "da"
+}
