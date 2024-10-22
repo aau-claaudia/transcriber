@@ -124,6 +124,20 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
     )
 
     parser.add_argument(
+        "--min_speakers",
+        type=optional_int,
+        default=0,
+        help="minimum number of speakers",
+    )
+
+    parser.add_argument(
+        "--max_speakers",
+        type=optional_int,
+        default=0,
+        help="maximum number of speakers",
+    )
+
+    parser.add_argument(
         "--args", nargs=argparse.REMAINDER
     )  # added to catch empty requests through shell script
 
