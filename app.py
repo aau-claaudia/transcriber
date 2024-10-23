@@ -42,6 +42,16 @@ def cli(args: dict[str, Any]) -> None:
     if args.get("prompt", None):
         transcribe_arguments["prompt"] = args.get("prompt")
 
+    # Create a dictionary for optional speaker parameters
+    speaker_params = {}
+    min_speakers = args.pop("min_speakers")
+    if min_speakers > 0:
+        speaker_params["min_speakers"] = min_speakers
+
+    max_speakers = args.pop("max_speakers")
+    if max_speakers > 0:
+        speaker_params["max_speakers"] = max_speakers
+
     threads = args.pop("threads")
     if threads > 0:
         torch.set_num_threads(threads)
@@ -78,6 +88,7 @@ def cli(args: dict[str, Any]) -> None:
             writer,
             transcribe_arguments,
             options,
+            speaker_params
         )
 
     # Scan for generated files in output_dir:
@@ -103,6 +114,7 @@ def process_file(
     writer,
     trans_arguments,
     options: dict[str, Any],
+    speaker_params,
 ) -> None:
     log.log_file_start(file, device)
     start_time = perf_counter_ns()
@@ -125,8 +137,9 @@ def process_file(
     del model_a
 
     # 3. Assign speaker labels
+    # Initialize the diarization pipeline
     diarize_model = whisperx.DiarizationPipeline(use_auth_token=False, device=device)
-    diarize_segments = diarize_model(audio)
+    diarize_segments = diarize_model(audio, **speaker_params)
     result: dict[str, Any] = whisperx.assign_word_speakers(diarize_segments, aligned_result)
     result["language"] = language
 
