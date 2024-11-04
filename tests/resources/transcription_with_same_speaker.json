@@ -1,0 +1,55 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 4.48,
+      "text": "Donald duck is talking here.",
+      "id": 0,
+      "speaker": "Donald Duck",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    },
+    {
+      "start": 4.48,
+      "end": 8.00,
+      "text": "And donald duck keeps talking.",
+      "id": 1,
+      "speaker": "Donald Duck",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    },
+    {
+      "start": 8.00,
+      "end": 12.00,
+      "text": "Elmo just took over the conversation.",
+      "id": 1,
+      "speaker": "Elmo",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    },
+    {
+      "start": 12.00,
+      "end": 16.00,
+      "text": "Elmo talks some more.",
+      "id": 1,
+      "speaker": "Elmo",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    },
+    {
+      "start": 16.00,
+      "end": 20.00,
+      "text": "Winnie the poo closes out.",
+      "id": 1,
+      "speaker": "Winnie the poo",
+      "temperature": 0.0,
+      "avg_logprob": -0.27922083202161285,
+      "no_speech_prob": 0.01095943246036768
+    }
+  ],
+  "language": "da"
+}
