@@ -6,6 +6,38 @@ from typing import TextIO
 import docx
 from whisperx.utils import ResultWriter, format_timestamp
 
+# This dict holds the result of the transcription with grouped speakers
+grouped_speakers_result:  dict = {}
+# This function groups the speaker lines with the same speaker into one
+def group_speakers(result: dict) -> dict:
+    # only create the grouping one time
+    if len(grouped_speakers_result) == 0:
+        # add the segments list and language
+        grouped_speakers_result["segments"] = []
+        grouped_speakers_result["language"] = result["language"]
+
+        current_speaker: str = ""
+        for line in result["segments"]:
+            speaker, text = extract_speaker_and_text(line)
+            if speaker != current_speaker:
+                # create new dict and add to segments list
+                new_segment = {
+                    "speaker": speaker,
+                    "text": text,
+                    "start": line["start"],
+                    "end": line["end"]
+                }
+                grouped_speakers_result["segments"].append(new_segment)
+                current_speaker = speaker
+            else:
+                # add the text to the previous dict in the segments list
+                grouped_speakers_result["segments"][-1]["text"] = (grouped_speakers_result["segments"][-1]["text"].strip()
+                                                                   + " "
+                                                                   + text.strip())
+                # push the end time forward
+                grouped_speakers_result["segments"][-1]["end"] = line["end"]
+
+    return grouped_speakers_result
 
 def get_field_names(result: dict) -> list[str]:
     # make sure that the CSV header contains the 'speaker' header even though the first line has no speaker
@@ -22,10 +54,15 @@ class WriteCSV(ResultWriter):
     extension: str = "csv"
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        fieldnames: list[str] = get_field_names(result)
+        transcription_data: dict
+        if options["group_speakers"]:
+            transcription_data = group_speakers(result)
+        else:
+            transcription_data = result
+        fieldnames: list[str] = get_field_names(transcription_data)
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(result["segments"])
+        writer.writerows(transcription_data["segments"])
 
 
 class WriteDOTE(ResultWriter):
@@ -46,8 +83,14 @@ class WriteDOTE(ResultWriter):
         return interface
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        result = self.format_result(result)
-        json.dump(result, file)
+        transcription_data: dict
+        if options["group_speakers"]:
+            transcription_data = group_speakers(result)
+        else:
+            transcription_data = result
+
+        transcription_data = self.format_result(transcription_data)
+        json.dump(transcription_data, file)
 
 
 class WriteDOCX(ResultWriter):
@@ -78,8 +121,13 @@ class WriteDOCX(ResultWriter):
         document.core_properties.subject = options.get("jobname", "")
 
         p = document.add_paragraph()
-        max_time = result["segments"][-1]["end"]
-        for line in result["segments"]:
+        transcription_data: dict
+        if options["group_speakers"]:
+            transcription_data = group_speakers(result)
+        else:
+            transcription_data = result
+        max_time = transcription_data["segments"][-1]["end"]
+        for line in transcription_data["segments"]:
             speaker, text = extract_speaker_and_text(line)
             time = p.add_run(self.format_time(line["start"], line["end"], max_time))
             time.italic = True

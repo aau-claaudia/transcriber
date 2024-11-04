@@ -78,14 +78,14 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
         nargs="+",
         type=Path,
         required=False,
-        help="file for transcribring",
+        help="file for transcribing",
     )
     parser.add_argument(
         "-o",
         "--output_dir",
         type=Path,
         default=Path("./out"),
-        help="file for transcribring",
+        help="file for transcribing",
     )
     parser.add_argument(
         "-la",
@@ -135,6 +135,13 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
         type=optional_int,
         default=0,
         help="maximum number of speakers",
+    )
+
+    parser.add_argument(
+        "--group_speakers",
+        action="store_true",
+        default=False,
+        help="enables grouping of text with the same speaker",
     )
 
     parser.add_argument(

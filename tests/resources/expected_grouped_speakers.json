@@ -1,0 +1,23 @@
+{
+  "segments": [
+    {
+      "speaker": "Donald Duck",
+      "text": "Donald duck is talking here. And donald duck keeps talking.",
+      "start": 0.0,
+      "end": 8.0
+    },
+    {
+      "speaker": "Elmo",
+      "text": "Elmo just took over the conversation. Elmo talks some more.",
+      "start": 8.0,
+      "end": 16.0
+    },
+    {
+      "speaker": "Winnie the poo",
+      "text": "Winnie the poo closes out.",
+      "start": 16.0,
+      "end": 20.0
+    }
+  ],
+  "language": "da"
+}

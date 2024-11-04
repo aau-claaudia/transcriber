@@ -76,6 +76,7 @@ def cli(args: dict[str, Any]) -> None:
             "max_line_width": None,
             "jobname": job_name,
             "filename": file,
+            "group_speakers" : args.get("group_speakers")
         }
         process_file(
             log,
