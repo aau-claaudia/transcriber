@@ -11,6 +11,9 @@ from whispaau.archive import archiving
 from whispaau.cli_utils import parse_arguments
 from whispaau.logging import Logger
 from whispaau.utils import get_writer
+from whispaau.utils import WRITERS
+from whispaau.utils import MERGED_SPEAKERS_WRITERS
+from whispaau.writers import merge_speakers
 import torch
 
 
@@ -65,7 +68,8 @@ def cli(args: dict[str, Any]) -> None:
     log.log_model_loading(model_name, start_time, perf_counter_ns())
 
     output_format = args.pop("output_format")
-    writer = get_writer(output_format, output_dir)
+    writer = get_writer(output_format, output_dir, WRITERS)
+    merge_writer = get_writer(output_format, output_dir, MERGED_SPEAKERS_WRITERS)
 
     log.log_processing(files)
 
@@ -75,8 +79,7 @@ def cli(args: dict[str, Any]) -> None:
             "max_line_count": None,
             "max_line_width": None,
             "jobname": job_name,
-            "filename": file,
-            "group_speakers" : args.get("group_speakers")
+            "filename": file
         }
         process_file(
             log,
@@ -87,13 +90,13 @@ def cli(args: dict[str, Any]) -> None:
             device,
             use_cuda,
             writer,
+            merge_writer,
+            args.get("merge_speakers"),
             transcribe_arguments,
             options,
             speaker_params
         )
-
-    # Scan for generated files in output_dir:
-    files_to_pack = [path for path in output_dir.glob("*") if path.is_file()]
+    files_to_pack = [path for path in output_dir.glob(f"*_{model_name}_*") if path.is_file()]
     # Pack everything into a process_name.zip
     job_name_directory = Path(job_name)
     archiving(
@@ -113,6 +116,8 @@ def process_file(
     device,
     use_cuda,
     writer,
+    merge_writer,
+    speaker_merge_enabled,
     trans_arguments,
     options: dict[str, Any],
     speaker_params,
@@ -156,6 +161,16 @@ def process_file(
         output_file,
         options,
     )
+    # if speaker_merge_enabled then also write merged file formats
+    if speaker_merge_enabled:
+        output_file_merged_speakers = (
+                output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+        )
+        merge_writer(
+            merge_speakers(result),
+            output_file_merged_speakers,
+            options
+        )
 
     log.log_file_end(file, start_time, perf_counter_ns())
 

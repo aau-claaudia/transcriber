@@ -138,10 +138,10 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
     )
 
     parser.add_argument(
-        "--group_speakers",
+        "--merge_speakers",
         action="store_true",
         default=False,
-        help="enables grouping of text with the same speaker",
+        help="enables merging of text entries with the same speaker",
     )
 
     parser.add_argument(
