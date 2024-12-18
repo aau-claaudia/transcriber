@@ -13,7 +13,7 @@ from whispaau.logging import Logger
 from whispaau.utils import get_writer
 from whispaau.utils import WRITERS
 from whispaau.utils import MERGED_SPEAKERS_WRITERS
-from whispaau.writers import merge_speakers
+from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
 
 
@@ -162,7 +162,7 @@ def process_file(
         options,
     )
     # if speaker_merge_enabled then also write merged file formats
-    if speaker_merge_enabled:
+    if speaker_merge_enabled and (merge_writer is not None):
         output_file_merged_speakers = (
                 output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
         )
@@ -171,6 +171,8 @@ def process_file(
             output_file_merged_speakers,
             options
         )
+        # reset the merge speaker data
+        reset_merge_speaker_data()
 
     log.log_file_end(file, start_time, perf_counter_ns())
 

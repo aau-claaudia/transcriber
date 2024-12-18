@@ -45,5 +45,8 @@ def get_writer(output_format: str, output_dir: str | Path, writer_list):
                 writer(result, file, options)
 
         return write_all
-
-    return writer_list[output_format](output_dir)
+    # check if the selected format is one of the available formats, when requesting e.g. txt which is not in merge set
+    if output_format in writer_list:
+        return writer_list[output_format](output_dir)
+    else:
+        return None

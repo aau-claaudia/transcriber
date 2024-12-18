@@ -10,7 +10,7 @@ from whisperx.utils import ResultWriter, format_timestamp
 merged_speakers_result:  dict = {}
 # This function groups the speaker lines with the same speaker into one
 def merge_speakers(result: dict) -> dict:
-    # only create the grouping one time
+    # only create the grouping one time per input file
     if len(merged_speakers_result) == 0:
         # add the segments list and language
         merged_speakers_result["segments"] = []
@@ -38,6 +38,10 @@ def merge_speakers(result: dict) -> dict:
                 merged_speakers_result["segments"][-1]["end"] = line["end"]
 
     return merged_speakers_result
+
+# This function will clear the merged speaker data. Use the function before creating data for the next file.
+def reset_merge_speaker_data():
+    merged_speakers_result.clear()
 
 def get_field_names(result: dict) -> list[str]:
     # make sure that the CSV header contains the 'speaker' header even though the first line has no speaker
