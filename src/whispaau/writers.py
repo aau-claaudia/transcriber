@@ -53,15 +53,20 @@ def get_field_names(result: dict) -> list[str]:
     # if none of the lines had a speaker then just return the keys from the first line
     return list(result["segments"][0].keys())
 
+def write_error(exception: Exception, extension: str):
+    print(f"An error occurred while attempting to write the {extension} format: {exception}")
 
 class WriteCSV(ResultWriter):
     extension: str = "csv"
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        fieldnames: list[str] = get_field_names(result)
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(result["segments"])
+        try:
+            fieldnames: list[str] = get_field_names(result)
+            writer = csv.DictWriter(file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(result["segments"])
+        except Exception as e:
+            write_error(e, self.extension)
 
 
 class WriteDOTE(ResultWriter):
@@ -82,8 +87,11 @@ class WriteDOTE(ResultWriter):
         return interface
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        transcription_data = self.format_result(result)
-        json.dump(transcription_data, file)
+        try:
+            transcription_data = self.format_result(result)
+            json.dump(transcription_data, file)
+        except Exception as e:
+            write_error(e, self.extension)
 
 
 class WriteDOCX(ResultWriter):
@@ -101,29 +109,32 @@ class WriteDOCX(ResultWriter):
         return f"{dt_start.strftime(time_format)} - {dt_end.strftime(time_format)}"
 
     def write_result(self, result: dict, file: TextIO, options: dict):
-        audio_filename = options.get("filename", "").stem
-        document = docx.Document()
-        document.add_heading(audio_filename, level=2)
-        document.add_heading(options["jobname"], level=4)
-        document.extended_properties.set_property("total_time", "   1")
-        document.extended_properties.set_property(
-            "application", "Whisper Transcription AAU extension"
-        )
-        document.core_properties.title = audio_filename
-        document.core_properties.author = options.get("username", "")
-        document.core_properties.subject = options.get("jobname", "")
+        try:
+            audio_filename = options.get("filename", "").stem
+            document = docx.Document()
+            document.add_heading(audio_filename, level=2)
+            document.add_heading(options["jobname"], level=4)
+            document.extended_properties.set_property("total_time", "   1")
+            document.extended_properties.set_property(
+                "application", "Whisper Transcription AAU extension"
+            )
+            document.core_properties.title = audio_filename
+            document.core_properties.author = options.get("username", "")
+            document.core_properties.subject = options.get("jobname", "")
 
-        p = document.add_paragraph()
-        max_time = result["segments"][-1]["end"]
-        for line in result["segments"]:
-            speaker, text = extract_speaker_and_text(line)
-            time = p.add_run(self.format_time(line["start"], line["end"], max_time))
-            time.italic = True
-            p.add_run("\t")
-            p.add_run(f'{speaker.strip()}\n')
-            p.add_run("\t")
-            p.add_run(f'{text.strip()}\n')
-        document.save(file.name)
+            p = document.add_paragraph()
+            max_time = result["segments"][-1]["end"]
+            for line in result["segments"]:
+                speaker, text = extract_speaker_and_text(line)
+                time = p.add_run(self.format_time(line["start"], line["end"], max_time))
+                time.italic = True
+                p.add_run("\t")
+                p.add_run(f'{speaker.strip()}\n')
+                p.add_run("\t")
+                p.add_run(f'{text.strip()}\n')
+            document.save(file.name)
+        except Exception as e:
+            write_error(e, self.extension)
 
 
 def extract_speaker_and_text(line):
