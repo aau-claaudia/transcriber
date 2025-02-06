@@ -103,7 +103,7 @@ class WriteDOCX(ResultWriter):
 
     @staticmethod
     def format_time(
-            start_time: int | float, end_time: int | float, max_time: int | float
+        start_time: int | float, end_time: int | float, max_time: int | float
     ) -> str:
         dt_start = datetime.utcfromtimestamp(start_time)
         dt_end = datetime.utcfromtimestamp(end_time)
