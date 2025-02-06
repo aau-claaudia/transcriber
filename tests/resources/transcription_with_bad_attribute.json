@@ -1,0 +1,3707 @@
+{
+  "segments": [
+    {
+      "start": 0.0,
+      "end": 9.72,
+      "text": " Within the platform, users can share files and folders with each other by using the username",
+      "words": [
+        {
+          "word": "Within",
+          "start": 0.0,
+          "end": 4.76,
+          "score": 0.893,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 4.82,
+          "end": 4.88,
+          "score": 0.991,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "platform,",
+          "start": 4.92,
+          "end": 5.603,
+          "score": 0.801,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "users",
+          "start": 5.924,
+          "end": 6.206,
+          "score": 0.835,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 6.266,
+          "end": 6.406,
+          "score": 0.977,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "share",
+          "start": 6.447,
+          "end": 6.647,
+          "score": 0.88,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files",
+          "start": 6.708,
+          "end": 7.089,
+          "score": 0.602,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 7.149,
+          "end": 7.23,
+          "score": 0.936,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folders",
+          "start": 7.29,
+          "end": 7.772,
+          "score": 0.813,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "with",
+          "start": 7.792,
+          "end": 7.973,
+          "score": 0.681,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "each",
+          "start": 8.033,
+          "end": 8.154,
+          "score": 0.888,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "other",
+          "start": 8.254,
+          "end": 8.455,
+          "score": 0.784,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 8.475,
+          "end": 8.736,
+          "score": 0.742,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "using",
+          "start": 8.857,
+          "end": 9.057,
+          "score": 0.894,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 9.098,
+          "end": 9.178,
+          "score": 0.828,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "username",
+          "start": 9.298,
+          "end": 9.72,
+          "score": 0.524,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 0,
+      "temperature": 0.0,
+      "avg_logprob": -0.15235041228818222,
+      "no_speech_prob": 0.07377520203590393
+    },
+    {
+      "start": 9.7,
+      "end": 17.72,
+      "text": " which can be found on the bottom left of the screen by clicking the avatar.",
+      "words": [
+        {
+          "word": "which",
+          "start": 9.7,
+          "end": 10.002,
+          "score": 0.968,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 10.042,
+          "end": 10.162,
+          "score": 1.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "be",
+          "start": 10.203,
+          "end": 10.283,
+          "score": 0.596,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "found",
+          "start": 10.323,
+          "end": 10.584,
+          "score": 0.882,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "on",
+          "start": 10.665,
+          "end": 10.725,
+          "score": 0.993,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 10.765,
+          "end": 10.826,
+          "score": 1.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "bottom",
+          "start": 10.886,
+          "end": 11.167,
+          "score": 0.989,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "left",
+          "start": 11.228,
+          "end": 11.409,
+          "score": 0.874,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "of",
+          "start": 11.469,
+          "end": 11.509,
+          "score": 0.997,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 11.549,
+          "end": 11.61,
+          "score": 0.995,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "screen",
+          "start": 11.67,
+          "end": 12.032,
+          "score": 0.903,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 12.052,
+          "end": 12.273,
+          "score": 0.72,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "clicking",
+          "start": 12.353,
+          "end": 12.655,
+          "score": 0.934,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 12.695,
+          "end": 12.755,
+          "score": 0.728,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "avatar.",
+          "start": 12.856,
+          "end": 17.72,
+          "score": 0.981,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 1,
+      "temperature": 0.0,
+      "avg_logprob": -0.15235041228818222,
+      "no_speech_prob": 0.07377520203590393
+    },
+    {
+      "start": 17.7,
+      "end": 21.5,
+      "text": " Select My Workspace.",
+      "words": [
+        {
+          "word": "Select",
+          "start": 17.7,
+          "end": 18.003,
+          "score": 0.15,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "My",
+          "start": 18.023,
+          "end": 18.084,
+          "score": 0.882,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Workspace.",
+          "start": 18.145,
+          "end": 21.5,
+          "score": 0.9,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 2,
+      "temperature": 0.0,
+      "avg_logprob": -0.15235041228818222,
+      "no_speech_prob": 0.07377520203590393
+    },
+    {
+      "start": 21.48,
+      "end": 27.06,
+      "text": " From the Files section of the navigation menu, click the drive.",
+      "words": [
+        {
+          "word": "From",
+          "start": 21.48,
+          "end": 21.561,
+          "score": 0.25,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 21.601,
+          "end": 21.661,
+          "score": 0.992,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Files",
+          "start": 21.802,
+          "end": 22.306,
+          "score": 0.831,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "section",
+          "start": 22.628,
+          "end": 22.971,
+          "score": 0.865,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "of",
+          "start": 23.011,
+          "end": 23.051,
+          "score": 1.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 23.092,
+          "end": 23.172,
+          "score": 0.832,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "navigation",
+          "start": 23.212,
+          "end": 23.797,
+          "score": 0.904,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "menu,",
+          "start": 23.857,
+          "end": 24.24,
+          "score": 0.889,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "click",
+          "start": 24.562,
+          "end": 24.784,
+          "score": 0.991,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 24.824,
+          "end": 24.884,
+          "score": 0.971,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "drive.",
+          "start": 24.925,
+          "end": 27.06,
+          "score": 0.828,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 3,
+      "temperature": 0.0,
+      "avg_logprob": -0.15235041228818222,
+      "no_speech_prob": 0.07377520203590393
+    },
+    {
+      "start": 27.04,
+      "end": 29.72,
+      "text": " Mark the folder or the file.",
+      "words": [
+        {
+          "word": "Mark",
+          "start": 27.04,
+          "end": 27.121,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 27.142,
+          "end": 27.223,
+          "score": 0.996,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folder",
+          "start": 27.263,
+          "end": 27.609,
+          "score": 0.921,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "or",
+          "start": 27.73,
+          "end": 27.812,
+          "score": 0.784,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 27.852,
+          "end": 27.913,
+          "score": 0.999,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "file.",
+          "start": 27.974,
+          "end": 29.72,
+          "score": 0.967,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 4,
+      "temperature": 0.0,
+      "avg_logprob": -0.15235041228818222,
+      "no_speech_prob": 0.07377520203590393
+    },
+    {
+      "start": 29.7,
+      "end": 35.08,
+      "text": " Select the Share option and write the username of the collaborator with whom you want to",
+      "words": [
+        {
+          "word": "Select",
+          "start": 29.7,
+          "end": 29.922,
+          "score": 0.39,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 29.942,
+          "end": 30.002,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Share",
+          "start": 30.022,
+          "end": 30.284,
+          "score": 0.692,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "option",
+          "start": 30.446,
+          "end": 30.808,
+          "score": 0.923,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 30.828,
+          "end": 30.889,
+          "score": 0.333,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "write",
+          "start": 32.582,
+          "end": 32.763,
+          "score": 0.92,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 32.803,
+          "end": 32.884,
+          "score": 0.916,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "username",
+          "start": 32.985,
+          "end": 33.428,
+          "score": 0.83,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "of",
+          "start": 33.468,
+          "end": 33.508,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 33.569,
+          "end": 33.629,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "collaborator",
+          "start": 33.67,
+          "end": 34.395,
+          "score": 0.927,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "with",
+          "start": 34.496,
+          "end": 34.637,
+          "score": 0.797,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "whom",
+          "start": 34.677,
+          "end": 34.778,
+          "score": 0.999,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "you",
+          "start": 34.818,
+          "end": 34.899,
+          "score": 0.906,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "want",
+          "start": 34.939,
+          "end": 35.02,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "to",
+          "start": 35.04,
+          "end": 35.08,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 5,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 35.06,
+      "end": 39.02,
+      "text": " share the folder.",
+      "words": [
+        {
+          "word": "share",
+          "start": 35.06,
+          "end": 35.343,
+          "score": 0.816,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 35.403,
+          "end": 35.464,
+          "score": 0.997,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folder.",
+          "start": 35.505,
+          "end": 39.02,
+          "score": 0.878,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 6,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 39.0,
+      "end": 44.84,
+      "text": " It is also possible to share a file or folder using a link.",
+      "words": [
+        {
+          "word": "It",
+          "start": 39.0,
+          "end": 39.04,
+          "score": 0.486,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "is",
+          "start": 39.101,
+          "end": 39.161,
+          "score": 0.535,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "also",
+          "start": 39.242,
+          "end": 39.483,
+          "score": 0.867,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "possible",
+          "start": 39.564,
+          "end": 40.007,
+          "score": 0.941,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "to",
+          "start": 40.087,
+          "end": 40.168,
+          "score": 0.834,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "share",
+          "start": 40.228,
+          "end": 40.43,
+          "score": 0.944,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "a",
+          "start": 40.49,
+          "end": 40.51,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "file",
+          "start": 40.551,
+          "end": 40.873,
+          "score": 0.819,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "or",
+          "start": 40.974,
+          "end": 41.034,
+          "score": 0.745,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folder",
+          "start": 41.094,
+          "end": 41.477,
+          "score": 0.845,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "using",
+          "start": 41.497,
+          "end": 41.84,
+          "score": 0.927,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "a",
+          "start": 41.92,
+          "end": 41.94,
+          "score": 1.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "link.",
+          "start": 42.001,
+          "end": 44.84,
+          "score": 0.951,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 7,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 44.82,
+      "end": 50.24,
+      "text": " The shared folders or files can be handled from the Shared Files section under Files",
+      "words": [
+        {
+          "word": "The",
+          "start": 44.82,
+          "end": 44.921,
+          "score": 0.828,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "shared",
+          "start": 44.961,
+          "end": 45.263,
+          "score": 0.777,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folders",
+          "start": 45.324,
+          "end": 45.747,
+          "score": 0.794,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "or",
+          "start": 45.807,
+          "end": 45.888,
+          "score": 0.864,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files",
+          "start": 45.948,
+          "end": 46.371,
+          "score": 0.757,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 46.472,
+          "end": 46.613,
+          "score": 0.95,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "be",
+          "start": 46.633,
+          "end": 46.734,
+          "score": 0.828,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "handled",
+          "start": 46.774,
+          "end": 47.157,
+          "score": 0.774,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "from",
+          "start": 47.177,
+          "end": 47.339,
+          "score": 0.903,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 47.379,
+          "end": 47.439,
+          "score": 0.796,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Shared",
+          "start": 47.621,
+          "end": 47.903,
+          "score": 0.899,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Files",
+          "start": 47.983,
+          "end": 48.407,
+          "score": 0.772,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "section",
+          "start": 48.789,
+          "end": 49.172,
+          "score": 0.934,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "under",
+          "start": 49.253,
+          "end": 49.414,
+          "score": 0.827,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Files",
+          "start": 49.555,
+          "end": 50.24,
+          "score": 0.85,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 8,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 50.22,
+      "end": 54.44,
+      "text": " in the navigation menu on the left.",
+      "words": [
+        {
+          "word": "in",
+          "start": 50.22,
+          "end": 50.382,
+          "score": 0.915,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 50.402,
+          "end": 50.483,
+          "score": 0.833,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "navigation",
+          "start": 50.503,
+          "end": 51.088,
+          "score": 0.921,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "menu",
+          "start": 51.149,
+          "end": 51.512,
+          "score": 0.918,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "on",
+          "start": 51.593,
+          "end": 51.633,
+          "score": 0.996,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 51.674,
+          "end": 51.755,
+          "score": 0.811,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "left.",
+          "start": 51.795,
+          "end": 54.44,
+          "score": 0.953,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 9,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 54.42,
+      "end": 58.22,
+      "text": " Here in the Shared with Me section, the user can accept sharing.",
+      "words": [
+        {
+          "word": "Here",
+          "start": 54.42,
+          "end": 54.521,
+          "score": 0.258,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "in",
+          "start": 54.723,
+          "end": 54.784,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 54.824,
+          "end": 54.885,
+          "score": 0.992,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Shared",
+          "start": 55.067,
+          "end": 55.35,
+          "score": 0.837,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "with",
+          "start": 55.39,
+          "end": 55.512,
+          "score": 0.859,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Me",
+          "start": 55.572,
+          "end": 55.693,
+          "score": 0.888,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "section,",
+          "start": 55.714,
+          "end": 56.421,
+          "score": 0.889,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 56.704,
+          "end": 56.785,
+          "score": 0.928,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "user",
+          "start": 56.906,
+          "end": 57.129,
+          "score": 0.813,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 57.149,
+          "end": 57.29,
+          "score": 0.965,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "accept",
+          "start": 57.331,
+          "end": 57.634,
+          "score": 0.946,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "sharing.",
+          "start": 57.735,
+          "end": 58.22,
+          "score": 0.856,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 10,
+      "temperature": 0.0,
+      "avg_logprob": -0.16687404975462494,
+      "no_speech_prob": 0.0008890492608770728
+    },
+    {
+      "start": 59.7,
+      "end": 67.06,
+      "text": " Users can also reject previously accepted sharing by clicking the Remove button.",
+      "words": [
+        {
+          "word": "Users",
+          "start": 59.7,
+          "end": 60.625,
+          "score": 0.869,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 60.685,
+          "end": 60.826,
+          "score": 0.962,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "also",
+          "start": 60.866,
+          "end": 61.128,
+          "score": 0.798,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "reject",
+          "start": 61.188,
+          "end": 61.57,
+          "score": 0.848,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "previously",
+          "start": 61.691,
+          "end": 62.214,
+          "score": 0.884,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "accepted",
+          "start": 62.294,
+          "end": 62.737,
+          "score": 0.989,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "sharing",
+          "start": 62.797,
+          "end": 63.179,
+          "score": 0.971,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 63.219,
+          "end": 63.42,
+          "score": 0.844,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "clicking",
+          "start": 63.521,
+          "end": 63.843,
+          "score": 0.911,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 63.883,
+          "end": 63.983,
+          "score": 0.936,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Remove",
+          "start": 64.064,
+          "end": 64.466,
+          "score": 0.706,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "button.",
+          "start": 64.647,
+          "end": 67.06,
+          "score": 0.992,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 11,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 67.04,
+      "end": 73.64,
+      "text": " The user can also accept sharing from the main dashboard.",
+      "words": [
+        {
+          "word": "The",
+          "start": 67.04,
+          "end": 67.12,
+          "score": 0.969,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "user",
+          "start": 67.241,
+          "end": 67.483,
+          "score": 0.87,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 67.523,
+          "end": 67.664,
+          "score": 0.971,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "also",
+          "start": 67.724,
+          "end": 67.986,
+          "score": 0.914,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "accept",
+          "start": 68.046,
+          "end": 68.368,
+          "score": 0.912,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "sharing",
+          "start": 68.428,
+          "end": 68.771,
+          "score": 0.985,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "from",
+          "start": 68.831,
+          "end": 68.972,
+          "score": 0.99,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 68.992,
+          "end": 69.072,
+          "score": 0.828,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "main",
+          "start": 69.133,
+          "end": 69.354,
+          "score": 0.799,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "dashboard.",
+          "start": 69.394,
+          "end": 73.64,
+          "score": 0.874,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 12,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 73.62,
+      "end": 78.28,
+      "text": " In the Shared by Me section, the user can invite additional users to already shared",
+      "words": [
+        {
+          "word": "In",
+          "start": 73.62,
+          "end": 73.66,
+          "score": 0.501,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 73.681,
+          "end": 73.741,
+          "score": 0.87,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Shared",
+          "start": 73.923,
+          "end": 74.185,
+          "score": 0.857,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 74.266,
+          "end": 74.387,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Me",
+          "start": 74.447,
+          "end": 74.588,
+          "score": 0.916,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "section,",
+          "start": 74.83,
+          "end": 75.274,
+          "score": 0.944,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 75.577,
+          "end": 75.678,
+          "score": 0.636,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "user",
+          "start": 75.799,
+          "end": 76.041,
+          "score": 0.715,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 76.061,
+          "end": 76.202,
+          "score": 0.963,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "invite",
+          "start": 76.243,
+          "end": 76.505,
+          "score": 0.81,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "additional",
+          "start": 76.565,
+          "end": 76.989,
+          "score": 0.865,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "users",
+          "start": 77.13,
+          "end": 77.473,
+          "score": 0.855,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "to",
+          "start": 77.534,
+          "end": 77.614,
+          "score": 0.766,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "already",
+          "start": 77.715,
+          "end": 78.038,
+          "score": 0.96,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "shared",
+          "start": 78.099,
+          "end": 78.28,
+          "score": 0.543,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 13,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 78.26,
+      "end": 84.38,
+      "text": " folders and files by clicking the Invite button.",
+      "words": [
+        {
+          "word": "folders",
+          "start": 78.26,
+          "end": 78.804,
+          "score": 0.696,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 78.884,
+          "end": 78.965,
+          "score": 0.788,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files",
+          "start": 79.045,
+          "end": 79.468,
+          "score": 0.85,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 79.569,
+          "end": 79.689,
+          "score": 0.99,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "clicking",
+          "start": 79.77,
+          "end": 80.092,
+          "score": 0.943,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 80.132,
+          "end": 80.213,
+          "score": 0.925,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Invite",
+          "start": 80.374,
+          "end": 80.716,
+          "score": 0.935,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "button.",
+          "start": 80.958,
+          "end": 84.38,
+          "score": 0.959,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 14,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 84.36,
+      "end": 86.72,
+      "text": " The user can also change the collaborator's permission and revoke the access to the shared",
+      "words": [
+        {
+          "word": "The",
+          "start": 84.36,
+          "end": 84.421,
+          "score": 0.989,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "user",
+          "start": 84.563,
+          "end": 84.808,
+          "score": 0.831,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 84.848,
+          "end": 84.991,
+          "score": 0.974,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "also",
+          "start": 85.031,
+          "end": 85.215,
+          "score": 0.568,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "change",
+          "start": 85.235,
+          "end": 85.357,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 85.377,
+          "end": 85.459,
+          "score": 0.499,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "collaborator's",
+          "start": 85.479,
+          "end": 85.764,
+          "score": 0.069,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "permission",
+          "start": 85.784,
+          "end": 85.988,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 86.008,
+          "end": 86.069,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "revoke",
+          "start": 86.09,
+          "end": 86.212,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 86.232,
+          "end": 86.293,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "access",
+          "start": 86.313,
+          "end": 86.435,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "to",
+          "start": 86.456,
+          "end": 86.497,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 86.517,
+          "end": 86.578,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "shared",
+          "start": 86.598,
+          "end": 86.72,
+          "score": 0.011,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 15,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 86.7,
+      "end": 87.721,
+      "text": " folders and files.",
+      "words": [
+        {
+          "word": "folders",
+          "start": 86.7,
+          "end": 87.054,
+          "score": 0.113,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 87.075,
+          "end": 87.138,
+          "score": 0.333,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files.",
+          "start": 87.596,
+          "end": 87.721,
+          "score": 0.167
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 16,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 87.7,
+      "end": 88.7,
+      "text": " The user can also change the collaborator's permission and revoke the access to the shared",
+      "words": [],
+      "chars": null,
+      "id": 17,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 88.7,
+      "end": 89.721,
+      "text": " folders and files.",
+      "words": [
+        {
+          "word": "folders",
+          "start": 88.7,
+          "end": 89.492,
+          "score": 0.393,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "and",
+          "start": 89.513,
+          "end": 89.575,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files.",
+          "start": 89.596,
+          "end": 89.721,
+          "score": 0.246,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 18,
+      "temperature": 0.2,
+      "avg_logprob": -0.21489087172916957,
+      "no_speech_prob": 0.0005375822656787932
+    },
+    {
+      "start": 89.7,
+      "end": 90.7,
+      "text": " The user can also change the collaborator's permission and revoke the access to the shared",
+      "words": [],
+      "chars": null,
+      "speaker": "SPEAKER_00",
+      "id": 19,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 90.7,
+      "end": 91.721,
+      "text": " folders or files.",
+      "words": [
+        {
+          "word": "folders",
+          "start": 90.7,
+          "end": 91.242,
+          "score": 0.748,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "or",
+          "start": 91.304,
+          "end": 91.367,
+          "score": 0.822,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files.",
+          "start": 91.429,
+          "end": 91.721,
+          "score": 0.385,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 20,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 91.7,
+      "end": 92.7,
+      "text": " The user can also change the collaborator's permission and revoke the access to the shared",
+      "words": [],
+      "chars": null,
+      "speaker": "SPEAKER_00",
+      "id": 21,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 92.7,
+      "end": 93.721,
+      "text": " folder or file.",
+      "words": [
+        {
+          "word": "folder",
+          "start": 92.7,
+          "end": 93.533,
+          "score": 0.121
+        },
+        {
+          "word": "or",
+          "start": 93.554,
+          "end": 93.596,
+          "score": 0.032
+        },
+        {
+          "word": "file.",
+          "start": 93.617,
+          "end": 93.721,
+          "score": 0.148
+        }
+      ],
+      "id": 22,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 93.7,
+      "end": 99.88,
+      "text": " The files or folders shared by collaborators with you are accessible from the Files section",
+      "words": [
+        {
+          "word": "The",
+          "start": 93.7,
+          "end": 94.908,
+          "score": 0.82,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files",
+          "start": 94.968,
+          "end": 95.351,
+          "score": 0.838,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "or",
+          "start": 95.411,
+          "end": 95.492,
+          "score": 0.65,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folders",
+          "start": 95.532,
+          "end": 95.955,
+          "score": 0.864,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "shared",
+          "start": 96.055,
+          "end": 96.317,
+          "score": 0.897,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 96.377,
+          "end": 96.478,
+          "score": 0.977,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "collaborators",
+          "start": 96.538,
+          "end": 97.243,
+          "score": 0.877,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "with",
+          "start": 97.303,
+          "end": 97.424,
+          "score": 0.855,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "you",
+          "start": 97.464,
+          "end": 97.585,
+          "score": 0.964,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "are",
+          "start": 97.686,
+          "end": 97.766,
+          "score": 0.515,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "accessible",
+          "start": 97.807,
+          "end": 98.35,
+          "score": 0.922,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "from",
+          "start": 98.411,
+          "end": 98.552,
+          "score": 0.89,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 98.572,
+          "end": 98.652,
+          "score": 0.829,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Files",
+          "start": 98.773,
+          "end": 99.196,
+          "score": 0.879,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "section",
+          "start": 99.498,
+          "end": 99.88,
+          "score": 0.777,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 23,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 99.86,
+      "end": 103.28,
+      "text": " in the navigation menu.",
+      "words": [
+        {
+          "word": "in",
+          "start": 99.86,
+          "end": 100.022,
+          "score": 0.911,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 100.062,
+          "end": 100.123,
+          "score": 0.997,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "navigation",
+          "start": 100.164,
+          "end": 100.73,
+          "score": 0.909,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "menu.",
+          "start": 100.791,
+          "end": 103.28,
+          "score": 0.889,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 24,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 103.26,
+      "end": 107.66,
+      "text": " If editing permissions have been granted, additional files can be uploaded inside the",
+      "words": [
+        {
+          "word": "If",
+          "start": 103.26,
+          "end": 103.361,
+          "score": 0.284,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "editing",
+          "start": 103.381,
+          "end": 103.704,
+          "score": 0.854,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "permissions",
+          "start": 103.765,
+          "end": 104.269,
+          "score": 0.99,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "have",
+          "start": 104.33,
+          "end": 104.451,
+          "score": 0.783,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "been",
+          "start": 104.491,
+          "end": 104.633,
+          "score": 0.854,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "granted,",
+          "start": 104.673,
+          "end": 105.097,
+          "score": 0.933,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "additional",
+          "start": 105.137,
+          "end": 105.884,
+          "score": 0.89,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "files",
+          "start": 105.985,
+          "end": 106.389,
+          "score": 0.864,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 106.469,
+          "end": 106.59,
+          "score": 1.0,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "be",
+          "start": 106.631,
+          "end": 106.712,
+          "score": 0.903,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "uploaded",
+          "start": 106.812,
+          "end": 107.196,
+          "score": 0.811,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "inside",
+          "start": 107.216,
+          "end": 107.579,
+          "score": 0.578,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 107.6,
+          "end": 107.66,
+          "score": 0.0,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 25,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 107.64,
+      "end": 112.28,
+      "text": " shared folder by clicking the Upload Files button.",
+      "words": [
+        {
+          "word": "shared",
+          "start": 107.64,
+          "end": 108.023,
+          "score": 0.765,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "folder",
+          "start": 108.064,
+          "end": 108.467,
+          "score": 0.876,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "by",
+          "start": 108.588,
+          "end": 108.709,
+          "score": 0.962,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "clicking",
+          "start": 108.79,
+          "end": 109.113,
+          "score": 0.908,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "the",
+          "start": 109.153,
+          "end": 109.214,
+          "score": 0.405,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Upload",
+          "start": 109.375,
+          "end": 109.718,
+          "score": 0.907,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "Files",
+          "start": 109.758,
+          "end": 110.121,
+          "score": 0.715,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "button.",
+          "start": 110.424,
+          "end": 112.28,
+          "score": 0.96,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 26,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    },
+    {
+      "start": 112.26,
+      "end": 115.96,
+      "text": " Now you can share data with your collaborators in a secure environment.",
+      "words": [
+        {
+          "word": "Now",
+          "start": 112.26,
+          "end": 112.503,
+          "score": 0.881,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "you",
+          "start": 112.563,
+          "end": 112.664,
+          "score": 0.781,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "can",
+          "start": 112.705,
+          "end": 112.846,
+          "score": 0.965,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "share",
+          "start": 112.867,
+          "end": 113.069,
+          "score": 0.767,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "data",
+          "start": 113.129,
+          "end": 113.453,
+          "score": 0.967,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "with",
+          "start": 113.493,
+          "end": 113.595,
+          "score": 0.996,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "your",
+          "start": 113.635,
+          "end": 113.736,
+          "score": 0.869,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "collaborators",
+          "start": 113.776,
+          "end": 114.565,
+          "score": 0.893,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "in",
+          "start": 114.686,
+          "end": 114.747,
+          "score": 0.907,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "a",
+          "start": 114.787,
+          "end": 114.808,
+          "score": 0.998,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "secure",
+          "start": 114.868,
+          "end": 115.232,
+          "score": 0.649,
+          "speaker": "SPEAKER_00"
+        },
+        {
+          "word": "environment.",
+          "start": 115.293,
+          "end": 115.96,
+          "score": 0.787,
+          "speaker": "SPEAKER_00"
+        }
+      ],
+      "speaker": "SPEAKER_00",
+      "id": 27,
+      "temperature": 0.6,
+      "avg_logprob": -0.20945353624297353,
+      "no_speech_prob": 0.000766622310038656
+    }
+  ],
+  "word_segments": [
+    {
+      "word": "Within",
+      "start": 0.0,
+      "end": 4.76,
+      "score": 0.893,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 4.82,
+      "end": 4.88,
+      "score": 0.991,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "platform,",
+      "start": 4.92,
+      "end": 5.603,
+      "score": 0.801,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "users",
+      "start": 5.924,
+      "end": 6.206,
+      "score": 0.835,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 6.266,
+      "end": 6.406,
+      "score": 0.977,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "share",
+      "start": 6.447,
+      "end": 6.647,
+      "score": 0.88,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files",
+      "start": 6.708,
+      "end": 7.089,
+      "score": 0.602,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 7.149,
+      "end": 7.23,
+      "score": 0.936,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 7.29,
+      "end": 7.772,
+      "score": 0.813,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "with",
+      "start": 7.792,
+      "end": 7.973,
+      "score": 0.681,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "each",
+      "start": 8.033,
+      "end": 8.154,
+      "score": 0.888,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "other",
+      "start": 8.254,
+      "end": 8.455,
+      "score": 0.784,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 8.475,
+      "end": 8.736,
+      "score": 0.742,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "using",
+      "start": 8.857,
+      "end": 9.057,
+      "score": 0.894,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 9.098,
+      "end": 9.178,
+      "score": 0.828,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "username",
+      "start": 9.298,
+      "end": 9.72,
+      "score": 0.524,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "which",
+      "start": 9.7,
+      "end": 10.002,
+      "score": 0.968,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 10.042,
+      "end": 10.162,
+      "score": 1.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "be",
+      "start": 10.203,
+      "end": 10.283,
+      "score": 0.596,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "found",
+      "start": 10.323,
+      "end": 10.584,
+      "score": 0.882,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "on",
+      "start": 10.665,
+      "end": 10.725,
+      "score": 0.993,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 10.765,
+      "end": 10.826,
+      "score": 1.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "bottom",
+      "start": 10.886,
+      "end": 11.167,
+      "score": 0.989,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "left",
+      "start": 11.228,
+      "end": 11.409,
+      "score": 0.874,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "of",
+      "start": 11.469,
+      "end": 11.509,
+      "score": 0.997,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 11.549,
+      "end": 11.61,
+      "score": 0.995,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "screen",
+      "start": 11.67,
+      "end": 12.032,
+      "score": 0.903,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 12.052,
+      "end": 12.273,
+      "score": 0.72,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "clicking",
+      "start": 12.353,
+      "end": 12.655,
+      "score": 0.934,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 12.695,
+      "end": 12.755,
+      "score": 0.728,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "avatar.",
+      "start": 12.856,
+      "end": 17.72,
+      "score": 0.981,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Select",
+      "start": 17.7,
+      "end": 18.003,
+      "score": 0.15,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "My",
+      "start": 18.023,
+      "end": 18.084,
+      "score": 0.882,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Workspace.",
+      "start": 18.145,
+      "end": 21.5,
+      "score": 0.9,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "From",
+      "start": 21.48,
+      "end": 21.561,
+      "score": 0.25,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 21.601,
+      "end": 21.661,
+      "score": 0.992,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Files",
+      "start": 21.802,
+      "end": 22.306,
+      "score": 0.831,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "section",
+      "start": 22.628,
+      "end": 22.971,
+      "score": 0.865,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "of",
+      "start": 23.011,
+      "end": 23.051,
+      "score": 1.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 23.092,
+      "end": 23.172,
+      "score": 0.832,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "navigation",
+      "start": 23.212,
+      "end": 23.797,
+      "score": 0.904,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "menu,",
+      "start": 23.857,
+      "end": 24.24,
+      "score": 0.889,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "click",
+      "start": 24.562,
+      "end": 24.784,
+      "score": 0.991,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 24.824,
+      "end": 24.884,
+      "score": 0.971,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "drive.",
+      "start": 24.925,
+      "end": 27.06,
+      "score": 0.828,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Mark",
+      "start": 27.04,
+      "end": 27.121,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 27.142,
+      "end": 27.223,
+      "score": 0.996,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folder",
+      "start": 27.263,
+      "end": 27.609,
+      "score": 0.921,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "or",
+      "start": 27.73,
+      "end": 27.812,
+      "score": 0.784,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 27.852,
+      "end": 27.913,
+      "score": 0.999,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "file.",
+      "start": 27.974,
+      "end": 29.72,
+      "score": 0.967,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Select",
+      "start": 29.7,
+      "end": 29.922,
+      "score": 0.39,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 29.942,
+      "end": 30.002,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Share",
+      "start": 30.022,
+      "end": 30.284,
+      "score": 0.692,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "option",
+      "start": 30.446,
+      "end": 30.808,
+      "score": 0.923,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 30.828,
+      "end": 30.889,
+      "score": 0.333,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "write",
+      "start": 32.582,
+      "end": 32.763,
+      "score": 0.92,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 32.803,
+      "end": 32.884,
+      "score": 0.916,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "username",
+      "start": 32.985,
+      "end": 33.428,
+      "score": 0.83,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "of",
+      "start": 33.468,
+      "end": 33.508,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 33.569,
+      "end": 33.629,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "collaborator",
+      "start": 33.67,
+      "end": 34.395,
+      "score": 0.927,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "with",
+      "start": 34.496,
+      "end": 34.637,
+      "score": 0.797,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "whom",
+      "start": 34.677,
+      "end": 34.778,
+      "score": 0.999,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "you",
+      "start": 34.818,
+      "end": 34.899,
+      "score": 0.906,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "want",
+      "start": 34.939,
+      "end": 35.02,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "to",
+      "start": 35.04,
+      "end": 35.08,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "share",
+      "start": 35.06,
+      "end": 35.343,
+      "score": 0.816,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 35.403,
+      "end": 35.464,
+      "score": 0.997,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folder.",
+      "start": 35.505,
+      "end": 39.02,
+      "score": 0.878,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "It",
+      "start": 39.0,
+      "end": 39.04,
+      "score": 0.486,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "is",
+      "start": 39.101,
+      "end": 39.161,
+      "score": 0.535,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "also",
+      "start": 39.242,
+      "end": 39.483,
+      "score": 0.867,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "possible",
+      "start": 39.564,
+      "end": 40.007,
+      "score": 0.941,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "to",
+      "start": 40.087,
+      "end": 40.168,
+      "score": 0.834,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "share",
+      "start": 40.228,
+      "end": 40.43,
+      "score": 0.944,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "a",
+      "start": 40.49,
+      "end": 40.51,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "file",
+      "start": 40.551,
+      "end": 40.873,
+      "score": 0.819,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "or",
+      "start": 40.974,
+      "end": 41.034,
+      "score": 0.745,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folder",
+      "start": 41.094,
+      "end": 41.477,
+      "score": 0.845,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "using",
+      "start": 41.497,
+      "end": 41.84,
+      "score": 0.927,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "a",
+      "start": 41.92,
+      "end": 41.94,
+      "score": 1.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "link.",
+      "start": 42.001,
+      "end": 44.84,
+      "score": 0.951,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "The",
+      "start": 44.82,
+      "end": 44.921,
+      "score": 0.828,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "shared",
+      "start": 44.961,
+      "end": 45.263,
+      "score": 0.777,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 45.324,
+      "end": 45.747,
+      "score": 0.794,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "or",
+      "start": 45.807,
+      "end": 45.888,
+      "score": 0.864,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files",
+      "start": 45.948,
+      "end": 46.371,
+      "score": 0.757,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 46.472,
+      "end": 46.613,
+      "score": 0.95,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "be",
+      "start": 46.633,
+      "end": 46.734,
+      "score": 0.828,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "handled",
+      "start": 46.774,
+      "end": 47.157,
+      "score": 0.774,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "from",
+      "start": 47.177,
+      "end": 47.339,
+      "score": 0.903,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 47.379,
+      "end": 47.439,
+      "score": 0.796,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Shared",
+      "start": 47.621,
+      "end": 47.903,
+      "score": 0.899,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Files",
+      "start": 47.983,
+      "end": 48.407,
+      "score": 0.772,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "section",
+      "start": 48.789,
+      "end": 49.172,
+      "score": 0.934,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "under",
+      "start": 49.253,
+      "end": 49.414,
+      "score": 0.827,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Files",
+      "start": 49.555,
+      "end": 50.24,
+      "score": 0.85,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "in",
+      "start": 50.22,
+      "end": 50.382,
+      "score": 0.915,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 50.402,
+      "end": 50.483,
+      "score": 0.833,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "navigation",
+      "start": 50.503,
+      "end": 51.088,
+      "score": 0.921,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "menu",
+      "start": 51.149,
+      "end": 51.512,
+      "score": 0.918,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "on",
+      "start": 51.593,
+      "end": 51.633,
+      "score": 0.996,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 51.674,
+      "end": 51.755,
+      "score": 0.811,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "left.",
+      "start": 51.795,
+      "end": 54.44,
+      "score": 0.953,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Here",
+      "start": 54.42,
+      "end": 54.521,
+      "score": 0.258,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "in",
+      "start": 54.723,
+      "end": 54.784,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 54.824,
+      "end": 54.885,
+      "score": 0.992,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Shared",
+      "start": 55.067,
+      "end": 55.35,
+      "score": 0.837,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "with",
+      "start": 55.39,
+      "end": 55.512,
+      "score": 0.859,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Me",
+      "start": 55.572,
+      "end": 55.693,
+      "score": 0.888,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "section,",
+      "start": 55.714,
+      "end": 56.421,
+      "score": 0.889,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 56.704,
+      "end": 56.785,
+      "score": 0.928,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "user",
+      "start": 56.906,
+      "end": 57.129,
+      "score": 0.813,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 57.149,
+      "end": 57.29,
+      "score": 0.965,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "accept",
+      "start": 57.331,
+      "end": 57.634,
+      "score": 0.946,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "sharing.",
+      "start": 57.735,
+      "end": 58.22,
+      "score": 0.856,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Users",
+      "start": 59.7,
+      "end": 60.625,
+      "score": 0.869,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 60.685,
+      "end": 60.826,
+      "score": 0.962,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "also",
+      "start": 60.866,
+      "end": 61.128,
+      "score": 0.798,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "reject",
+      "start": 61.188,
+      "end": 61.57,
+      "score": 0.848,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "previously",
+      "start": 61.691,
+      "end": 62.214,
+      "score": 0.884,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "accepted",
+      "start": 62.294,
+      "end": 62.737,
+      "score": 0.989,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "sharing",
+      "start": 62.797,
+      "end": 63.179,
+      "score": 0.971,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 63.219,
+      "end": 63.42,
+      "score": 0.844,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "clicking",
+      "start": 63.521,
+      "end": 63.843,
+      "score": 0.911,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 63.883,
+      "end": 63.983,
+      "score": 0.936,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Remove",
+      "start": 64.064,
+      "end": 64.466,
+      "score": 0.706,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "button.",
+      "start": 64.647,
+      "end": 67.06,
+      "score": 0.992,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "The",
+      "start": 67.04,
+      "end": 67.12,
+      "score": 0.969,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "user",
+      "start": 67.241,
+      "end": 67.483,
+      "score": 0.87,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 67.523,
+      "end": 67.664,
+      "score": 0.971,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "also",
+      "start": 67.724,
+      "end": 67.986,
+      "score": 0.914,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "accept",
+      "start": 68.046,
+      "end": 68.368,
+      "score": 0.912,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "sharing",
+      "start": 68.428,
+      "end": 68.771,
+      "score": 0.985,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "from",
+      "start": 68.831,
+      "end": 68.972,
+      "score": 0.99,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 68.992,
+      "end": 69.072,
+      "score": 0.828,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "main",
+      "start": 69.133,
+      "end": 69.354,
+      "score": 0.799,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "dashboard.",
+      "start": 69.394,
+      "end": 73.64,
+      "score": 0.874,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "In",
+      "start": 73.62,
+      "end": 73.66,
+      "score": 0.501,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 73.681,
+      "end": 73.741,
+      "score": 0.87,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Shared",
+      "start": 73.923,
+      "end": 74.185,
+      "score": 0.857,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 74.266,
+      "end": 74.387,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Me",
+      "start": 74.447,
+      "end": 74.588,
+      "score": 0.916,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "section,",
+      "start": 74.83,
+      "end": 75.274,
+      "score": 0.944,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 75.577,
+      "end": 75.678,
+      "score": 0.636,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "user",
+      "start": 75.799,
+      "end": 76.041,
+      "score": 0.715,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 76.061,
+      "end": 76.202,
+      "score": 0.963,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "invite",
+      "start": 76.243,
+      "end": 76.505,
+      "score": 0.81,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "additional",
+      "start": 76.565,
+      "end": 76.989,
+      "score": 0.865,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "users",
+      "start": 77.13,
+      "end": 77.473,
+      "score": 0.855,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "to",
+      "start": 77.534,
+      "end": 77.614,
+      "score": 0.766,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "already",
+      "start": 77.715,
+      "end": 78.038,
+      "score": 0.96,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "shared",
+      "start": 78.099,
+      "end": 78.28,
+      "score": 0.543,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 78.26,
+      "end": 78.804,
+      "score": 0.696,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 78.884,
+      "end": 78.965,
+      "score": 0.788,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files",
+      "start": 79.045,
+      "end": 79.468,
+      "score": 0.85,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 79.569,
+      "end": 79.689,
+      "score": 0.99,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "clicking",
+      "start": 79.77,
+      "end": 80.092,
+      "score": 0.943,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 80.132,
+      "end": 80.213,
+      "score": 0.925,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Invite",
+      "start": 80.374,
+      "end": 80.716,
+      "score": 0.935,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "button.",
+      "start": 80.958,
+      "end": 84.38,
+      "score": 0.959,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "The",
+      "start": 84.36,
+      "end": 84.421,
+      "score": 0.989,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "user",
+      "start": 84.563,
+      "end": 84.808,
+      "score": 0.831,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 84.848,
+      "end": 84.991,
+      "score": 0.974,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "also",
+      "start": 85.031,
+      "end": 85.215,
+      "score": 0.568,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "change",
+      "start": 85.235,
+      "end": 85.357,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 85.377,
+      "end": 85.459,
+      "score": 0.499,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "collaborator's",
+      "start": 85.479,
+      "end": 85.764,
+      "score": 0.069,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "permission",
+      "start": 85.784,
+      "end": 85.988,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 86.008,
+      "end": 86.069,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "revoke",
+      "start": 86.09,
+      "end": 86.212,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 86.232,
+      "end": 86.293,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "access",
+      "start": 86.313,
+      "end": 86.435,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "to",
+      "start": 86.456,
+      "end": 86.497,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 86.517,
+      "end": 86.578,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "shared",
+      "start": 86.598,
+      "end": 86.72,
+      "score": 0.011,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 86.7,
+      "end": 87.054,
+      "score": 0.113,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 87.075,
+      "end": 87.138,
+      "score": 0.333,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files.",
+      "start": 87.596,
+      "end": 87.721,
+      "score": 0.167
+    },
+    {
+      "word": "folders",
+      "start": 88.7,
+      "end": 89.492,
+      "score": 0.393,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "and",
+      "start": 89.513,
+      "end": 89.575,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files.",
+      "start": 89.596,
+      "end": 89.721,
+      "score": 0.246,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 90.7,
+      "end": 91.242,
+      "score": 0.748,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "or",
+      "start": 91.304,
+      "end": 91.367,
+      "score": 0.822,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files.",
+      "start": 91.429,
+      "end": 91.721,
+      "score": 0.385,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folder",
+      "start": 92.7,
+      "end": 93.533,
+      "score": 0.121
+    },
+    {
+      "word": "or",
+      "start": 93.554,
+      "end": 93.596,
+      "score": 0.032
+    },
+    {
+      "word": "file.",
+      "start": 93.617,
+      "end": 93.721,
+      "score": 0.148
+    },
+    {
+      "word": "The",
+      "start": 93.7,
+      "end": 94.908,
+      "score": 0.82,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files",
+      "start": 94.968,
+      "end": 95.351,
+      "score": 0.838,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "or",
+      "start": 95.411,
+      "end": 95.492,
+      "score": 0.65,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folders",
+      "start": 95.532,
+      "end": 95.955,
+      "score": 0.864,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "shared",
+      "start": 96.055,
+      "end": 96.317,
+      "score": 0.897,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 96.377,
+      "end": 96.478,
+      "score": 0.977,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "collaborators",
+      "start": 96.538,
+      "end": 97.243,
+      "score": 0.877,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "with",
+      "start": 97.303,
+      "end": 97.424,
+      "score": 0.855,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "you",
+      "start": 97.464,
+      "end": 97.585,
+      "score": 0.964,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "are",
+      "start": 97.686,
+      "end": 97.766,
+      "score": 0.515,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "accessible",
+      "start": 97.807,
+      "end": 98.35,
+      "score": 0.922,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "from",
+      "start": 98.411,
+      "end": 98.552,
+      "score": 0.89,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 98.572,
+      "end": 98.652,
+      "score": 0.829,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Files",
+      "start": 98.773,
+      "end": 99.196,
+      "score": 0.879,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "section",
+      "start": 99.498,
+      "end": 99.88,
+      "score": 0.777,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "in",
+      "start": 99.86,
+      "end": 100.022,
+      "score": 0.911,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 100.062,
+      "end": 100.123,
+      "score": 0.997,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "navigation",
+      "start": 100.164,
+      "end": 100.73,
+      "score": 0.909,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "menu.",
+      "start": 100.791,
+      "end": 103.28,
+      "score": 0.889,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "If",
+      "start": 103.26,
+      "end": 103.361,
+      "score": 0.284,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "editing",
+      "start": 103.381,
+      "end": 103.704,
+      "score": 0.854,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "permissions",
+      "start": 103.765,
+      "end": 104.269,
+      "score": 0.99,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "have",
+      "start": 104.33,
+      "end": 104.451,
+      "score": 0.783,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "been",
+      "start": 104.491,
+      "end": 104.633,
+      "score": 0.854,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "granted,",
+      "start": 104.673,
+      "end": 105.097,
+      "score": 0.933,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "additional",
+      "start": 105.137,
+      "end": 105.884,
+      "score": 0.89,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "files",
+      "start": 105.985,
+      "end": 106.389,
+      "score": 0.864,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 106.469,
+      "end": 106.59,
+      "score": 1.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "be",
+      "start": 106.631,
+      "end": 106.712,
+      "score": 0.903,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "uploaded",
+      "start": 106.812,
+      "end": 107.196,
+      "score": 0.811,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "inside",
+      "start": 107.216,
+      "end": 107.579,
+      "score": 0.578,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 107.6,
+      "end": 107.66,
+      "score": 0.0,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "shared",
+      "start": 107.64,
+      "end": 108.023,
+      "score": 0.765,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "folder",
+      "start": 108.064,
+      "end": 108.467,
+      "score": 0.876,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "by",
+      "start": 108.588,
+      "end": 108.709,
+      "score": 0.962,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "clicking",
+      "start": 108.79,
+      "end": 109.113,
+      "score": 0.908,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "the",
+      "start": 109.153,
+      "end": 109.214,
+      "score": 0.405,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Upload",
+      "start": 109.375,
+      "end": 109.718,
+      "score": 0.907,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Files",
+      "start": 109.758,
+      "end": 110.121,
+      "score": 0.715,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "button.",
+      "start": 110.424,
+      "end": 112.28,
+      "score": 0.96,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "Now",
+      "start": 112.26,
+      "end": 112.503,
+      "score": 0.881,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "you",
+      "start": 112.563,
+      "end": 112.664,
+      "score": 0.781,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "can",
+      "start": 112.705,
+      "end": 112.846,
+      "score": 0.965,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "share",
+      "start": 112.867,
+      "end": 113.069,
+      "score": 0.767,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "data",
+      "start": 113.129,
+      "end": 113.453,
+      "score": 0.967,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "with",
+      "start": 113.493,
+      "end": 113.595,
+      "score": 0.996,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "your",
+      "start": 113.635,
+      "end": 113.736,
+      "score": 0.869,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "collaborators",
+      "start": 113.776,
+      "end": 114.565,
+      "score": 0.893,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "in",
+      "start": 114.686,
+      "end": 114.747,
+      "score": 0.907,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "a",
+      "start": 114.787,
+      "end": 114.808,
+      "score": 0.998,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "secure",
+      "start": 114.868,
+      "end": 115.232,
+      "score": 0.649,
+      "speaker": "SPEAKER_00"
+    },
+    {
+      "word": "environment.",
+      "start": 115.293,
+      "end": 115.96,
+      "score": 0.787,
+      "speaker": "SPEAKER_00"
+    }
+  ],
+  "language": "en"
+}

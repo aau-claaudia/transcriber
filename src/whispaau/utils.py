@@ -9,6 +9,7 @@ from . import writers
 from pathlib import Path
 from whisperx import utils
 from typing import TextIO
+from collections import OrderedDict
 
 WRITERS = {}
 
@@ -35,6 +36,15 @@ MERGED_SPEAKERS_WRITERS.update(CUSTOMIZED_WRITERS)
 WRITERS.update(CUSTOMIZED_WRITERS)
 WRITERS.update(OFFICIAL_WRITERS)
 
+# Function to move the csv writer to the end
+def move_csv_to_end(dictionary):
+    if 'csv' in dictionary:
+        dictionary.move_to_end('csv')
+    return dictionary
+# sorting the writer dictionaries so that the CSV writer runs last. The data is cleaned before writing CSV to avoid errors.
+# see https://github.com/aau-claaudia/transcriber/issues/20
+MERGED_SPEAKERS_WRITERS = move_csv_to_end(OrderedDict(sorted(MERGED_SPEAKERS_WRITERS.items())))
+WRITERS = move_csv_to_end(OrderedDict(sorted(WRITERS.items())))
 
 def get_writer(output_format: str, output_dir: str | Path, writer_list):
     if output_format == "all":

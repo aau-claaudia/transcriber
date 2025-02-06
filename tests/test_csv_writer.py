@@ -26,3 +26,17 @@ with open(test_file_name, 'r') as file:
 
 # clean up after test, remove the generated test file
 os.remove(test_file_name)
+
+# verify bugfix for https://github.com/aau-claaudia/transcriber/issues/20
+csv_writer = WriteCSV("Test bugfix")
+
+# read JSON test file
+with open('resources/transcription_with_bad_attribute.json') as json_file:
+    data = json.load(json_file)
+
+file = open(test_file_name, 'w')
+# write the CSV file (should not give an error with bugfix)
+csv_writer.write_result(data, file, {})
+
+# clean up after test, remove the generated test file
+os.remove(test_file_name)
