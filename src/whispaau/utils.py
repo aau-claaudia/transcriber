@@ -8,6 +8,7 @@ from . import writers
 
 from pathlib import Path
 from whisperx import utils
+from whisperx.alignment import DEFAULT_ALIGN_MODELS_HF, DEFAULT_ALIGN_MODELS_TORCH
 from typing import TextIO
 from collections import OrderedDict
 
@@ -60,3 +61,6 @@ def get_writer(output_format: str, output_dir: str | Path, writer_list):
         return writer_list[output_format](output_dir)
     else:
         return None
+
+def is_speaker_diarization_supported(language: str) -> bool:
+    return (language in DEFAULT_ALIGN_MODELS_HF) or (language in DEFAULT_ALIGN_MODELS_TORCH)
