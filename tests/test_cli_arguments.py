@@ -13,7 +13,7 @@ import pytest
 def mock_args():
     return [
         "-i",
-        "data/G1-P2-runner.wav",
+        "resources/end2end/input/shorts.m4a",
         "-m",
         "tiny",
         "-o",
@@ -33,7 +33,7 @@ def test_arguments_paths(mock_args):
     assert args["no_mps"] == True
     assert args["no_cuda"] == False
     assert args["verbose"] == False
-    assert args["input"] == {Path("data/G1-P2-runner.wav").resolve()}
+    assert args["input"] == {Path("resources/end2end/input/shorts.m4a").resolve()}
     assert args["output_dir"] == Path("test_zip_out")
     assert args["language"] == None
     assert args["logging"] == False
