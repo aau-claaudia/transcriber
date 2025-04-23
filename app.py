@@ -97,7 +97,20 @@ def cli(args: dict[str, Any]) -> None:
             options,
             speaker_params
         )
-    files_to_pack = [path for path in output_dir.glob(f"*_{model_name}_*") if path.is_file()]
+    if args.get("transcriber_gui"):
+        # If running from the transcriber GUI the user can have multiple runs with different models
+        # Get all available model names
+        whisper_model_names = whisper.available_models()
+        # Include files for all model names
+        files_to_pack = [
+        path
+        for whisper_model_name in whisper_model_names
+        for path in output_dir.glob(f"*_{whisper_model_name}_*")
+        if path.is_file()
+        ]
+    else:
+        files_to_pack = [path for path in output_dir.glob(f"*_{model_name}_*") if path.is_file()]
+
     # Pack everything into a process_name.zip
     job_name_directory = Path(job_name)
     archiving(
