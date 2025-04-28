@@ -145,6 +145,13 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
     )
 
     parser.add_argument(
+        "--transcriber_gui",
+        action="store_true",
+        default=False,
+        help="this flag indicates running from the transcriber GUI interface",
+    )
+
+    parser.add_argument(
         "--args", nargs=argparse.REMAINDER
     )  # added to catch empty requests through shell script
 
