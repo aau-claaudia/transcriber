@@ -1,0 +1,52 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install system packages
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libxml2-dev libxslt1-dev
+
+      # Step 3: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12' # Specify the Python version you want to use
+
+      # Step 4: Install transcriber
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir -U "huggingface_hub[cli]"
+          mkdir /home/ubuntu/.cache/torch
+          mkdir /home/ubuntu/.cache/torch/pyannote
+          huggingface-cli login --token ${{ secrets.HF_TOKEN }}
+          huggingface-cli download pyannote/speaker-diarization-3.1 --cache-dir /home/ubuntu/.cache/torch/pyannote
+          huggingface-cli download pyannote/segmentation-3.0 --cache-dir /home/ubuntu/.cache/torch/pyannote
+          pip install --no-cache-dir numpy==1.26.4
+          pip install --no-cache-dir faster-whisper==1.0.0
+          pip install --no-cache-dir -r aau-whisper/requirements.txt
+          pip install --no-cache-dir -e "${{ github.workspace }}/aau-whisper"
+
+      # Step 5: Run custom test suite
+      - name: Run custom test suite
+        run: |
+          cd "${{ github.workspace }}/aau-whisper/tests"
+          chmod +x run_test_suite.sh  # Ensure the script is executable
+          ./run_test_suite.sh
