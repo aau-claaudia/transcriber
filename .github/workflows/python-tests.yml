@@ -42,12 +42,12 @@ jobs:
           huggingface-cli download pyannote/segmentation-3.0 --cache-dir "${{ github.workspace }}/.cache/torch/pyannote"
           pip install --no-cache-dir numpy==1.26.4
           pip install --no-cache-dir faster-whisper==1.0.0
-          pip install --no-cache-dir -r "${{ github.workspace }}/aau-whisper/requirements.txt"
-          pip install --no-cache-dir -e "${{ github.workspace }}/aau-whisper"
+          pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
+          pip install --no-cache-dir -e "${{ github.workspace }}"
 
       # Step 5: Run custom test suite
       - name: Run custom test suite
         run: |
-          cd "${{ github.workspace }}/aau-whisper/tests"
+          cd "${{ github.workspace }}/tests"
           chmod +x run_test_suite.sh  # Ensure the script is executable
           ./run_test_suite.sh
