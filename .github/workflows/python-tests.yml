@@ -27,11 +27,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12' # Specify the Python version you want to use
+          python-version: '3.12'
 
       # Step 4: Install transcriber
-      - name: Install dependencies
+      - name: Install transcriber
         run: |
+          pwd
+          ls
           python -m pip install --upgrade pip
           pip install --no-cache-dir -U "huggingface_hub[cli]"
           mkdir -p "${{ github.workspace }}/.cache/torch/pyannote"
