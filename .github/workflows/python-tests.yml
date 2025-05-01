@@ -51,6 +51,12 @@ jobs:
       #    chmod +x run_test_suite.sh  # Ensure the script is executable
       #    ./run_test_suite.sh
 
+      # Step 5: Run transcriber to generate output files for end-to-end test
+      #- name: Run transcriber
+      #  run: |
+      #    cd "${{ github.workspace }}"
+      #    python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
+
       # Step 6: Run application tests
       - name: Run application tests
         run: |

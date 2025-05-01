@@ -46,7 +46,7 @@ def test_log_processing(logger, caplog):
 
 
 def test_log_file_start(logger, caplog, temp_log_dir):
-    file_path = Path("../resources/end2end/input/shorts.m4a")
+    file_path = Path("resources/end2end/input/shorts.m4a")
     device = "CPU"
     logger.log_file_start(file_path, device)
     assert f"Starting {file_path.name}" in caplog.text
