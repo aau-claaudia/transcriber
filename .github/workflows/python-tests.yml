@@ -29,19 +29,13 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Check Torch Cache Directory
-        run: |
-          echo "Torch cache directory: $HOME/.cache/torch"
-          ls -al $HOME/.cache/torch || echo "Torch cache directory does not exist yet."
-          mkdir -p $HOME/.cache/torch/pyannote
-
       # Step 4: Install transcriber
       - name: Install transcriber
         run: |
           python -m pip install --upgrade pip
           pip install pytest
           pip install --no-cache-dir -U "huggingface_hub[cli]"
-          mkdir -p "${{ github.workspace }}/.cache/torch/pyannote"
+          mkdir -p $HOME/.cache/torch/pyannote
           huggingface-cli login --token ${{ secrets.HF_TOKEN }}
           huggingface-cli download pyannote/speaker-diarization-3.1 --cache-dir $HOME/.cache/torch/pyannote
           huggingface-cli download pyannote/segmentation-3.0 --cache-dir $HOME/.cache/torch/pyannote

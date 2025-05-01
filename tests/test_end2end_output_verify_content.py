@@ -103,7 +103,3 @@ class TestTranscriptionOutput(unittest.TestCase):
         # Make assertion based on allowed similarity threshold
         self.assertGreaterEqual(similarity, threshold,
                                 f"Transcription similarity ({similarity:.2%}) is below the threshold of {threshold:.2%}.")
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -51,6 +51,3 @@ class TestDirectoryStructure(unittest.TestCase):
         # Check that there are no unexpected files
         for actual in actual_files:
             self.assertIn(actual, self.expected_files, f"Unexpected file: {actual}")
-
-if __name__ == "__main__":
-    unittest.main()

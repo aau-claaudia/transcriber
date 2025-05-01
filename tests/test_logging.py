@@ -66,9 +66,3 @@ def test_log_finished(logger, caplog):
     filename = "test.txt"
     logger.log_finished(filename)
     assert f"{filename} is finished" in caplog.text
-
-
-# Add more test cases as needed
-
-if __name__ == "__main__":
-    pytest.main()
