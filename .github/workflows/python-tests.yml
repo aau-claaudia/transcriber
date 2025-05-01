@@ -33,6 +33,7 @@ jobs:
         run: |
           echo "Torch cache directory: $HOME/.cache/torch"
           ls -al $HOME/.cache/torch || echo "Torch cache directory does not exist yet."
+          mkdir -p $HOME/.cache/torch
 
       # Step 4: Install transcriber
       - name: Install transcriber
