@@ -45,13 +45,6 @@ jobs:
           pip install --no-cache-dir -e "${{ github.workspace }}"
 
       # Step 5: Run transcriber to generate output files for end-to-end test
-      #- name: Run transcriber
-      #  run: |
-      #    cd "${{ github.workspace }}/tests"
-      #    chmod +x run_test_suite.sh  # Ensure the script is executable
-      #    ./run_test_suite.sh
-
-      # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
         run: |
           cd "${{ github.workspace }}"
@@ -65,4 +58,4 @@ jobs:
       # Step 7: Run end-to-end test
       - name: Run end-to-end tests
         run: |
-          python -m unittest discover -s tests -p "*.py"
+          python -m unittest discover -s "${{ github.workspace }}/tests" -p "*.py"

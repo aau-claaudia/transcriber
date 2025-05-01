@@ -1,7 +1,8 @@
 import json
-
 import unittest
 import difflib
+from pathlib import Path
+import os
 
 def read_file_as_string(file_path):
     """
@@ -54,13 +55,19 @@ class TranscriptionParser:
 
 class TestTranscriptionOutput(unittest.TestCase):
     def setUp(self):
-        parser = TranscriptionParser("output/DIALOGUE_small_en_merged.dote.json")
+        current_path = Path(os.path.dirname(os.path.realpath(__file__)))
+        self.dialogue_path = current_path / "output" / "DIALOGUE_small_en_merged.dote.json"
+        self.shorts_path = current_path / "output" / "shorts_small_da_merged.dote.json"
+        self.dialogue_output_path = current_path / "resources" / "end2end" / "DIALOGUE_OUTPUT.txt"
+        self.shorts_output_path = current_path / "resources" / "end2end" / "SHORTS_OUTPUT.txt"
+
+        parser = TranscriptionParser(self.dialogue_path)
         result = parser.parse_and_concatenate()
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_dialogue = result
         self.generated_first_speaker_dialogue = parser.parse_first_speaker()
 
-        parser = TranscriptionParser("output/shorts_small_da_merged.dote.json")
+        parser = TranscriptionParser(self.shorts_path)
         result = parser.parse_and_concatenate()
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_shorts = result
@@ -81,7 +88,7 @@ class TestTranscriptionOutput(unittest.TestCase):
     def test_transcription_output(self):
         # Verify content for DIALOGUE_small_en_merged.dote.json
         # Load expected transcription output
-        expected_output = read_file_as_string("resources/end2end/DIALOGUE_OUTPUT.txt")
+        expected_output = read_file_as_string(self.dialogue_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_dialogue, 0.88)
 
@@ -90,7 +97,7 @@ class TestTranscriptionOutput(unittest.TestCase):
 
         # Verify content for shorts_small_da_merged.dote.json
         # Load expected transcription output
-        expected_output = read_file_as_string("resources/end2end/SHORTS_OUTPUT.txt")
+        expected_output = read_file_as_string(self.shorts_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_shorts, 0.88)
 
