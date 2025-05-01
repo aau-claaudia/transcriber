@@ -52,10 +52,10 @@ jobs:
       #    ./run_test_suite.sh
 
       # Step 5: Run transcriber to generate output files for end-to-end test
-      #- name: Run transcriber
-      #  run: |
-      #    cd "${{ github.workspace }}"
-      #    python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
+      - name: Run transcriber
+        run: |
+          cd "${{ github.workspace }}"
+          python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
 
       # Step 6: Run application tests
       - name: Run application tests
@@ -63,6 +63,6 @@ jobs:
           python -m unittest discover -s "${{ github.workspace }}/tests/application" -p "*.py"
 
       # Step 7: Run end-to-end test
-      #- name: Run end-to-end tests
-      #  run: |
-      #    python -m unittest discover -s tests -p "*.py"
+      - name: Run end-to-end tests
+        run: |
+          python -m unittest discover -s tests -p "*.py"

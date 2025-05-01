@@ -24,6 +24,7 @@ class TestCsvWriter(unittest.TestCase):
 
         # write the CSV file
         csv_writer.write_result(data, file, {})
+        file.close()
 
         expected_output_file = open(self.expected_file_path)
 
@@ -32,6 +33,7 @@ class TestCsvWriter(unittest.TestCase):
             output = file.read()
             expected_output = expected_output_file.read()
             assert output == expected_output, 'The generated output does not match the expected output.'
+            expected_output_file.close()
 
         # clean up after test, remove the generated test file
         os.remove(self.test_file_path)
@@ -46,6 +48,6 @@ class TestCsvWriter(unittest.TestCase):
         file = open(self.test_file_path, 'w')
         # write the CSV file (should not give an error with bugfix)
         csv_writer.write_result(data, file, {})
-
+        file.close()
         # clean up after test, remove the generated test file
         os.remove(self.test_file_path)
