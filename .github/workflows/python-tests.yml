@@ -58,4 +58,4 @@ jobs:
       # Step 7: Run end-to-end test
       - name: Run end-to-end tests
         run: |
-          python -m unittest discover -s "${{ github.workspace }}/tests" -p "*.py"
+          python -m unittest discover -s "${{ github.workspace }}/tests" -p "*.py" -t "${{ github.workspace }}/tests"
