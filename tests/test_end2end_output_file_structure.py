@@ -1,10 +1,12 @@
 import os
 import unittest
+from pathlib import Path
 
 class TestDirectoryStructure(unittest.TestCase):
     def setUp(self):
         # Define the directory to check
-        self.directory_path = "./output"
+        current_path = Path(os.path.dirname(os.path.realpath(__file__)))
+        self.directory_path = current_path / "output"
 
         # Define the expected files
         self.expected_files = [

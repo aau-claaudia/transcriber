@@ -4,7 +4,7 @@ from whispaau.writers import merge_speakers
 from pathlib import Path
 import unittest
 
-class TestCsvWriter(unittest.TestCase):
+class TestSpeakerGrouping(unittest.TestCase):
     def setUp(self):
         current_path = Path(os.path.dirname(os.path.realpath(__file__)))
         self.transcription_with_same_speaker = current_path / "resources" / "transcription_with_same_speaker.json"
