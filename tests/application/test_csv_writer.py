@@ -5,10 +5,10 @@ from whispaau.writers import WriteCSV
 csv_writer = WriteCSV("")
 
 test_file_name: str = 'resources/test_output.csv'
-expected_file_name: str = 'resources/expected_output_missing_speaker.csv'
+expected_file_name: str = '../resources/expected_output_missing_speaker.csv'
 
 # read JSON test file
-with open('resources/shorts_missing_speaker_fist_line.json') as json_file:
+with open('../resources/shorts_missing_speaker_fist_line.json') as json_file:
     data = json.load(json_file)
 
 file = open(test_file_name, 'w')
@@ -31,7 +31,7 @@ os.remove(test_file_name)
 csv_writer = WriteCSV("Test bugfix")
 
 # read JSON test file
-with open('resources/transcription_with_bad_attribute.json') as json_file:
+with open('../resources/transcription_with_bad_attribute.json') as json_file:
     data = json.load(json_file)
 
 file = open(test_file_name, 'w')

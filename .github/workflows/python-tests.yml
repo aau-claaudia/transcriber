@@ -44,9 +44,19 @@ jobs:
           pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
           pip install --no-cache-dir -e "${{ github.workspace }}"
 
-      # Step 5: Run test suite
-      - name: Run test suite
+      # Step 5: Run transcriber to generate output files for end-to-end test
+      - name: Run transcriber
         run: |
           cd "${{ github.workspace }}/tests"
           chmod +x run_test_suite.sh  # Ensure the script is executable
           ./run_test_suite.sh
+
+      # Step 6: Run application tests
+      - name: Run application tests
+        run: |
+          python -m unittest discover -s tests/application -p "*.py"
+
+      # Step 7: Run end-to-end test
+      - name: Run end-to-end tests
+        run: |
+          python -m unittest discover -s tests -p "*.py"

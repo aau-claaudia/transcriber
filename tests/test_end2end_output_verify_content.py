@@ -58,12 +58,13 @@ class TestTranscriptionOutput(unittest.TestCase):
         result = parser.parse_and_concatenate()
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_dialogue = result
+        self.generated_first_speaker_dialogue = parser.parse_first_speaker()
 
         parser = TranscriptionParser("output/shorts_small_da_merged.dote.json")
         result = parser.parse_and_concatenate()
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_shorts = result
-        self.generated_first_speaker = parser.parse_first_speaker()
+        self.generated_first_speaker_shorts = parser.parse_first_speaker()
 
     def preprocess_text(self, text):
         # Preprocess text to ignore case, punctuation, and extra whitespace
@@ -84,6 +85,9 @@ class TestTranscriptionOutput(unittest.TestCase):
 
         self.compare_fuzzy(expected_output, self.generated_output_dialogue, 0.88)
 
+        # Verify the speaker has been created properly
+        self.assertEqual(self.generated_first_speaker_dialogue, "SPEAKER_00", "The speaker has not been created!")
+
         # Verify content for shorts_small_da_merged.dote.json
         # Load expected transcription output
         expected_output = read_file_as_string("resources/end2end/SHORTS_OUTPUT.txt")
@@ -91,7 +95,7 @@ class TestTranscriptionOutput(unittest.TestCase):
         self.compare_fuzzy(expected_output, self.generated_output_shorts, 0.88)
 
         # Verify the speaker has been created properly
-        self.assertEqual(self.generated_first_speaker, "SPEAKER_00", "The speaker has not been created!")
+        self.assertEqual(self.generated_first_speaker_shorts, "SPEAKER_00", "The speaker has not been created!")
 
     def compare_fuzzy(self, expected_output, generated_output, threshold):
         # Preprocess both expected and actual outputs
