@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "Torch cache directory: $HOME/.cache/torch"
           ls -al $HOME/.cache/torch || echo "Torch cache directory does not exist yet."
-          mkdir -p $HOME/.cache/torch
+          mkdir -p $HOME/.cache/torch/pyannote
 
       # Step 4: Install transcriber
       - name: Install transcriber
@@ -43,8 +43,8 @@ jobs:
           pip install --no-cache-dir -U "huggingface_hub[cli]"
           mkdir -p "${{ github.workspace }}/.cache/torch/pyannote"
           huggingface-cli login --token ${{ secrets.HF_TOKEN }}
-          huggingface-cli download pyannote/speaker-diarization-3.1 --cache-dir "${{ github.workspace }}/.cache/torch/pyannote"
-          huggingface-cli download pyannote/segmentation-3.0 --cache-dir "${{ github.workspace }}/.cache/torch/pyannote"
+          huggingface-cli download pyannote/speaker-diarization-3.1 --cache-dir $HOME/.cache/torch/pyannote
+          huggingface-cli download pyannote/segmentation-3.0 --cache-dir $HOME/.cache/torch/pyannote
           pip install --no-cache-dir numpy==1.26.4
           pip install --no-cache-dir faster-whisper==1.0.0
           pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
