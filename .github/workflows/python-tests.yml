@@ -29,12 +29,16 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Check Torch Cache Directory
+        run: |
+          echo "Torch cache directory: $HOME/.cache/torch"
+          ls -al $HOME/.cache/torch || echo "Torch cache directory does not exist yet."
+
       # Step 4: Install transcriber
       - name: Install transcriber
         run: |
-          pwd
-          ls
           python -m pip install --upgrade pip
+          pip install pytest
           pip install --no-cache-dir -U "huggingface_hub[cli]"
           mkdir -p "${{ github.workspace }}/.cache/torch/pyannote"
           huggingface-cli login --token ${{ secrets.HF_TOKEN }}
@@ -45,8 +49,8 @@ jobs:
           pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
           pip install --no-cache-dir -e "${{ github.workspace }}"
 
-      # Step 5: Run custom test suite
-      - name: Run custom test suite
+      # Step 5: Run test suite
+      - name: Run test suite
         run: |
           cd "${{ github.workspace }}/tests"
           chmod +x run_test_suite.sh  # Ensure the script is executable
