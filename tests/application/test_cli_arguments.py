@@ -8,25 +8,24 @@ from pathlib import Path
 from whispaau.cli_utils import parse_arguments
 import pytest
 
+# Create a fixture to simulate command-line arguments
+@pytest.fixture
+def mock_args():
+    return [
+        "-i",
+        "resources/end2end/input/shorts.m4a",
+        "-m",
+        "tiny",
+        "-o",
+        "test_zip_out",
+        "--no-mps",
+        "--archive_password",
+        "gg",
+        "--job_name",
+        "halløjsa d",
+    ]
+
 class TestCliArguments(unittest.TestCase):
-
-    # Create a fixture to simulate command-line arguments
-    @pytest.fixture
-    def mock_args(self):
-        return [
-            "-i",
-            "resources/end2end/input/shorts.m4a",
-            "-m",
-            "tiny",
-            "-o",
-            "test_zip_out",
-            "--no-mps",
-            "--archive_password",
-            "gg",
-            "--job_name",
-            "halløjsa d",
-        ]
-
 
     def test_arguments_paths(self, mock_args):
         args = parse_arguments(mock_args)

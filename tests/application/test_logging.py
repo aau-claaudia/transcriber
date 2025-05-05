@@ -7,25 +7,24 @@ import logging
 from pathlib import Path
 from whispaau.logging import Logger
 
+@pytest.fixture
+def temp_log_dir(tmp_path):
+    log_dir = tmp_path / "logs"
+    log_dir.mkdir()
+    return tmp_path / "logs"
+
+
+@pytest.fixture
+def logger(temp_log_dir):
+    return Logger("test_logger", temp_log_dir, verbose=True)
+
+
+@pytest.fixture
+def mock_ffmpeg_probe(mocker):
+    # Mock the behavior of ffmpeg.probe
+    mocker.patch("ffmpeg.probe", return_value={"format": {"duration": "10.5"}})
+
 class TestLogging(unittest.TestCase):
-
-    @pytest.fixture
-    def temp_log_dir(self, tmp_path):
-        log_dir = tmp_path / "logs"
-        log_dir.mkdir()
-        return tmp_path / "logs"
-
-
-    @pytest.fixture
-    def logger(self, temp_log_dir):
-        return Logger("test_logger", temp_log_dir, verbose=True)
-
-
-    @pytest.fixture
-    def mock_ffmpeg_probe(self, mocker):
-        # Mock the behavior of ffmpeg.probe
-        mocker.patch("ffmpeg.probe", return_value={"format": {"duration": "10.5"}})
-
 
     def test_logger_creation(self, logger, temp_log_dir):
         assert logger.name == "test_logger"
