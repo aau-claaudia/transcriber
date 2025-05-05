@@ -59,7 +59,3 @@ jobs:
       - name: Run end-to-end tests
         run: |
           python -m unittest discover -s "${{ github.workspace }}/tests" -p "*end2end*.py"
-
-      # TODO: change back to having all tests in same folder and just run one target after running the transcriber?
-      # TODO: or change the target to something like:
-      # TODO: python -m unittest discover -s "${{ github.workspace }}/tests" -p "*end2end*.py"
