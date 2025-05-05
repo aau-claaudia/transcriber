@@ -27,8 +27,6 @@ class TestCliArguments(unittest.TestCase):
             "--job_name",
             "halløjsa d",
         ]
-        print(input_file_path.__str__())
-        print(Path("somepath/shorts.m4a").resolve())
 
     def test_arguments_paths(self):
         args = parse_arguments(self.mock_args)
