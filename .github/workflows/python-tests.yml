@@ -3,10 +3,12 @@ name: Python Tests
 on:
   push:
     branches:
-      - "*"
+      - main
   pull_request:
-    branches:
-      - "*"
+    types:
+      - synchronize
+      - opened
+      - reopened
 
 jobs:
   test:
