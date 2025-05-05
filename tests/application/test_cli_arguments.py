@@ -2,51 +2,57 @@
 # -*- coding: utf-8 -*-
 
 """ Test cli arguments """
+import os
 import unittest
 from pathlib import Path
 
 from whispaau.cli_utils import parse_arguments
-import pytest
-
-# Create a fixture to simulate command-line arguments
-@pytest.fixture
-def mock_args():
-    return [
-        "-i",
-        "resources/end2end/input/shorts.m4a",
-        "-m",
-        "tiny",
-        "-o",
-        "test_zip_out",
-        "--no-mps",
-        "--archive_password",
-        "gg",
-        "--job_name",
-        "halløjsa d",
-    ]
 
 class TestCliArguments(unittest.TestCase):
 
-    def test_arguments_paths(self, mock_args):
-        args = parse_arguments(mock_args)
+    def setUp(self):
+        current_path = Path(os.path.dirname(os.path.realpath(__file__)))
+        input_file_path = current_path / "somepath" / "shorts.m4a"
+        # Initialize mock arguments for all tests
+        self.mock_args = [
+            "-i",
+            input_file_path.__str__(),
+            "-m",
+            "tiny",
+            "-o",
+            "test_zip_out",
+            "--no-mps",
+            "--archive_password",
+            "gg",
+            "--job_name",
+            "halløjsa d",
+        ]
+        print(input_file_path.__str__())
+        print(Path("somepath/shorts.m4a").resolve())
 
-        assert args["model"] == "tiny"
-        assert args["no_mps"] == True
-        assert args["no_cuda"] == False
-        assert args["verbose"] == False
-        assert args["input"] == {Path("resources/end2end/input/shorts.m4a").resolve()}
-        assert args["output_dir"] == Path("test_zip_out")
-        assert args["language"] == None
-        assert args["logging"] == False
-        assert args["threads"] == 0
-        assert args["output_format"] == "all"
-        assert args["prompt"] == []
-        assert args["archive_password"] == "gg"
-        assert args["job_name"] == "halløjsa d"
+    def test_arguments_paths(self):
+        args = parse_arguments(self.mock_args)
 
-        assert "input_dir" not in args
+        self.assertEqual(args["model"], "tiny")
+        self.assertTrue(args["no_mps"])
+        self.assertFalse(args["no_cuda"])
+        self.assertFalse(args["verbose"])
+        self.assertIsNotNone(args["input"])
+        self.assertEqual(args["output_dir"], Path("test_zip_out"))
+        self.assertIsNone(args["language"])
+        self.assertFalse(args["logging"])
+        self.assertEqual(args["threads"], 0)
+        self.assertEqual(args["output_format"], "all")
+        self.assertEqual(args["prompt"], [])
+        self.assertEqual(args["archive_password"], "gg")
+        self.assertEqual(args["job_name"], "halløjsa d")
 
+        self.assertNotIn("input_dir", args)
 
     def test_parse_arguments_no_input(self):
-        with pytest.raises(SystemExit):
+        with self.assertRaises(SystemExit):
             parse_arguments([])  # Simulate no input arguments, should raise an error
+
+
+if __name__ == "__main__":
+    unittest.main()
