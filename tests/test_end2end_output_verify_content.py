@@ -85,9 +85,10 @@ class TestTranscriptionOutput(unittest.TestCase):
         # Calculate similarity using difflib
         return difflib.SequenceMatcher(None, text1, text2).ratio()
 
-    def test_transcription_output(self):
+    def test_transcription_output_dialogue(self):
         # Verify content for DIALOGUE_small_en_merged.dote.json
         # Load expected transcription output
+        print("Starting end2end test - verifying output generated from input file: DIALOGUE.m4a")
         expected_output = read_file_as_string(self.dialogue_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_dialogue, 0.88)
@@ -95,8 +96,10 @@ class TestTranscriptionOutput(unittest.TestCase):
         # Verify the speaker has been created properly
         self.assertEqual(self.generated_first_speaker_dialogue, "SPEAKER_00", "The speaker has not been created!")
 
+    def test_transcription_output_shorts(self):
         # Verify content for shorts_small_da_merged.dote.json
         # Load expected transcription output
+        print("Starting end2end test - verifying output generated from input file: shorts.m4a")
         expected_output = read_file_as_string(self.shorts_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_shorts, 0.88)
