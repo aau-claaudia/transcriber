@@ -1,0 +1,64 @@
+name: Build and test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install system packages
+      - name: Install system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libxml2-dev libxslt1-dev
+
+      # Step 3: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      # Step 4: Install transcriber
+      - name: Install transcriber
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pip install --no-cache-dir -U "huggingface_hub[cli]"
+          mkdir -p $HOME/.cache/torch/pyannote
+          huggingface-cli login --token ${{ secrets.HF_TOKEN }}
+          huggingface-cli download pyannote/speaker-diarization-3.1 --cache-dir $HOME/.cache/torch/pyannote
+          huggingface-cli download pyannote/segmentation-3.0 --cache-dir $HOME/.cache/torch/pyannote
+          pip install --no-cache-dir numpy==1.26.4
+          pip install --no-cache-dir faster-whisper==1.0.0
+          pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
+          pip install --no-cache-dir -e "${{ github.workspace }}"
+
+      # Step 5: Run transcriber to generate output files for end-to-end test
+      - name: Run transcriber
+        run: |
+          cd "${{ github.workspace }}"
+          python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
+
+      # Step 6: Run application tests
+      - name: Run application tests
+        run: |
+          python -m unittest discover -s "${{ github.workspace }}/tests/application" -p "*.py"
+
+      # Step 7: Run end-to-end test
+      - name: Run end-to-end tests
+        run: |
+          python -m unittest discover -s "${{ github.workspace }}/tests" -p "*end2end*.py"
+
