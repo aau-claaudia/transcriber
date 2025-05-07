@@ -52,6 +52,18 @@ class TranscriptionParser:
             print(f"Error reading or parsing the file: {e}")
             return None
 
+    def parse_language(self):
+        """
+        Parses the JSON file and returns the language code
+        """
+        try:
+            with open(self.file_path, 'r') as file:
+                data = json.load(file)
+            return data["language"]
+        except (FileNotFoundError, json.JSONDecodeError) as e:
+            print(f"Error reading or parsing the file: {e}")
+            return None
+
 
 class TestTranscriptionOutput(unittest.TestCase):
     def setUp(self):
@@ -60,6 +72,8 @@ class TestTranscriptionOutput(unittest.TestCase):
         self.shorts_path = current_path / "output" / "shorts_small_da_merged.dote.json"
         self.dialogue_output_path = current_path / "resources" / "end2end" / "DIALOGUE_OUTPUT.txt"
         self.shorts_output_path = current_path / "resources" / "end2end" / "SHORTS_OUTPUT.txt"
+        self.dialogue_path_openai_json = current_path / "output" / "DIALOGUE_small_en.json"
+        self.shorts_path_openai_json = current_path / "output" / "shorts_small_da.json"
 
         parser = TranscriptionParser(self.dialogue_path)
         result = parser.parse_and_concatenate()
@@ -72,6 +86,12 @@ class TestTranscriptionOutput(unittest.TestCase):
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_shorts = result
         self.generated_first_speaker_shorts = parser.parse_first_speaker()
+
+        # parse languages from output files
+        parser = TranscriptionParser(self.dialogue_path_openai_json)
+        self.dialogue_language = parser.parse_language()
+        parser = TranscriptionParser(self.shorts_path_openai_json)
+        self.shorts_language = parser.parse_language()
 
     def preprocess_text(self, text):
         # Preprocess text to ignore case, punctuation, and extra whitespace
@@ -88,7 +108,7 @@ class TestTranscriptionOutput(unittest.TestCase):
     def test_transcription_output_dialogue(self):
         # Verify content for DIALOGUE_small_en_merged.dote.json
         # Load expected transcription output
-        print("Starting end2end test - verifying output generated from input file: DIALOGUE.m4a")
+        print("Running end2end test - verifying output generated from input file: DIALOGUE.m4a")
         expected_output = read_file_as_string(self.dialogue_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_dialogue, 0.88)
@@ -99,13 +119,19 @@ class TestTranscriptionOutput(unittest.TestCase):
     def test_transcription_output_shorts(self):
         # Verify content for shorts_small_da_merged.dote.json
         # Load expected transcription output
-        print("Starting end2end test - verifying output generated from input file: shorts.m4a")
+        print("Running end2end test - verifying output generated from input file: shorts.m4a")
         expected_output = read_file_as_string(self.shorts_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_shorts, 0.88)
 
         # Verify the speaker has been created properly
         self.assertEqual(self.generated_first_speaker_shorts, "SPEAKER_00", "The speaker has not been created!")
+
+    def test_verify_language_detection(self):
+        # Verify correct language for output files
+        print("Running end2end test - verifying correct language for generated output files")
+        self.assertEqual(self.dialogue_language, "en", "The language code is wrong!")
+        self.assertEqual(self.shorts_language, "da", "The language code is wrong!")
 
     def compare_fuzzy(self, expected_output, generated_output, threshold):
         # Preprocess both expected and actual outputs

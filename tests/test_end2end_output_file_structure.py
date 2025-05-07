@@ -43,7 +43,7 @@ class TestDirectoryStructure(unittest.TestCase):
         ]
 
     def test_directory_structure(self):
-        print("Starting end2end test - verifying folder structure for output files.")
+        print("Running end2end test - verifying folder structure for output files.")
         # Get the list of files in the directory
         actual_files = os.listdir(self.directory_path)
 
