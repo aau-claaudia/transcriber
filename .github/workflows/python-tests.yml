@@ -45,6 +45,7 @@ jobs:
           pip install --no-cache-dir faster-whisper==1.0.0
           pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
           pip install --no-cache-dir -e "${{ github.workspace }}"
+          pip show whisperx
 
       # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
