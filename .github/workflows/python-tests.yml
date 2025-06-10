@@ -45,6 +45,9 @@ jobs:
           pip install --no-cache-dir faster-whisper==1.0.0
           pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
           pip install --no-cache-dir -e "${{ github.workspace }}"
+          pip show whisperx
+          sed -i 's/^    tokens = torch\.tensor(tokens) if not isinstance(tokens, torch\.Tensor) else tokens$/    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens/' /opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/whisperx/alignment.py
+          grep "tokens = torch" /opt/hostedtoolcache/Python/3.12.10/x64/lib/python3.12/site-packages/whisperx/alignment.py
 
       # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
