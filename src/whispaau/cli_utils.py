@@ -14,7 +14,7 @@ def get_directory(input_dir: str):
     files = [
         p.resolve()
         for p in Path(input_dir).glob("**/*")
-        if p.suffix.lower() in {".mp3", ".mp4", ".m4a", ".wav", ".mpg"}
+        if p.suffix.lower() in {".mp3", ".mp4", ".m4a", ".wav", ".mpg", ".mpeg"}
     ]
     return files
 
@@ -70,7 +70,7 @@ def parse_arguments(args: Optional[list[Any]] = None) -> dict[str, Any]:
         "--input_dir",
         type=get_directory,
         # required=True,
-        help="directory of multiple files (mp3, m4a, mp4, wav) for transcribing",
+        help="directory of multiple files (mp3, m4a, mp4, wav, mpeg, mpg) for transcribing",
     )
     parser.add_argument(
         "-i",
