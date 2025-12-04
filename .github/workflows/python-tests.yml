@@ -46,7 +46,7 @@ jobs:
           alignment_py=$(python -c "import whisperx, os; print(os.path.join(os.path.dirname(whisperx.__file__), 'alignment.py'))")
           sed -i 's/^    tokens = torch\.tensor(tokens) if not isinstance(tokens, torch\.Tensor) else tokens$/    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens/' "$alignment_py"
           grep "tokens = torch" "$alignment_py"
-          export TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true
+          echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
 
       # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
