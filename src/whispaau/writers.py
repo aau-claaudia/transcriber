@@ -65,7 +65,6 @@ class WriteCSV(ResultWriter):
             if not result["segments"]:
                 # empty output from the whisper algorithm
                 return
-            print(f"Result dict: {result.__str__()}")
             fieldnames: list[str] = get_field_names(result)
             clean_result_for_csv_writer(fieldnames, result)
             writer = csv.DictWriter(file, fieldnames=fieldnames)
