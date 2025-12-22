@@ -62,6 +62,9 @@ class WriteCSV(ResultWriter):
 
     def write_result(self, result: dict, file: TextIO, options: dict):
         try:
+            if not result["segments"]:
+                # empty output from the whisper algorithm
+                return
             fieldnames: list[str] = get_field_names(result)
             clean_result_for_csv_writer(fieldnames, result)
             writer = csv.DictWriter(file, fieldnames=fieldnames)
@@ -77,6 +80,9 @@ class WriteDOTE(ResultWriter):
 
     @staticmethod
     def format_result(result: dict):
+        if not result["segments"]:
+            # empty output from the whisper algorithm
+            return
         interface = {"lines": []}
         for line in result["segments"]:
             speaker, text = extract_speaker_and_text(line)
@@ -114,6 +120,9 @@ class WriteDOCX(ResultWriter):
 
     def write_result(self, result: dict, file: TextIO, options: dict):
         try:
+            if not result["segments"]:
+                # empty output from the whisper algorithm
+                return
             audio_filename = options.get("filename", "").stem
             document = docx.Document()
             document.add_heading(audio_filename, level=2)

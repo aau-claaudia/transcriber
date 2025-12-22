@@ -177,23 +177,27 @@ def process_file(
     output_file = (
         output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
     )
-    writer(
-        result,
-        output_file,
-        options,
-    )
-    # if speaker_merge_enabled then also write merged file formats
-    if speaker_merge_enabled and (merge_writer is not None):
-        output_file_merged_speakers = (
-                output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+    if not result["segments"]:
+        # empty output from the whisper algorithm
+        print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
+    else:
+        writer(
+            result,
+            output_file,
+            options,
         )
-        merge_writer(
-            merge_speakers(result),
-            output_file_merged_speakers,
-            options
-        )
-        # reset the merge speaker data
-        reset_merge_speaker_data()
+        # if speaker_merge_enabled then also write merged file formats
+        if speaker_merge_enabled and (merge_writer is not None):
+            output_file_merged_speakers = (
+                    output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+            )
+            merge_writer(
+                merge_speakers(result),
+                output_file_merged_speakers,
+                options
+            )
+            # reset the merge speaker data
+            reset_merge_speaker_data()
 
     log.log_file_end(file, start_time, perf_counter_ns())
 
