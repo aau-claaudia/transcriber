@@ -179,7 +179,7 @@ def process_file(
     )
     if not result["segments"]:
         # empty output from the whisper algorithm
-        print("The transcription algorithm generated empty output.")
+        print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
     else:
         writer(
             result,
