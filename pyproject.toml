@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Transcriber"
+version = "1.17"
+description = "Customised cli for AI transcription"
+authors = [
+    {name = "Nikolaj Andersen"},
+    {name = "Pelle Rosenbeck Gøeg"},
+    {name = "Speechbrain"},
+    {name = "OpenAI"},
+]
+license = {file = "LICENSE"}
+urls = {Repository = "https://github.com/aau-claaudia/transcriber/"}
+dependencies = [
+    "ctranslate2>=4.5.0",
+    "faster-whisper>=1.1.1",
+    "certifi>=2022.12.7",
+    "charset-normalizer==2.1.1",
+    "ffmpeg-python>=0.2.0",
+    "filelock==3.8.2",
+    "future>=0.18.3",
+    "huggingface-hub<1.0.0",
+    "idna==3.4",
+    "lxml",
+    "more-itertools==9.0.0",
+    "numpy>=2.1.0",
+    "packaging==22.0",
+    "python-docx>=0.8.11",
+    "python-docx-ng",
+    "PyYAML==6.0.1",
+    "pyzipper>=0.3.6",
+    "regex>=2022.10.31",
+    "requests>=2",
+    "tokenizers>=0.13.2",
+    "torch~=2.8.0",
+    "torchaudio~=2.8.0",
+    "torchvision>=0.15.1",
+    "pyannote-audio>=4.0.0",
+    "tqdm==4.64.1",
+    "transformers>=4.48.0, <5.50.0",
+    "typing_extensions>=4.4.0",
+    "urllib3>=1.26.13",
+    "triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'", # only install triton on x86_64 Linux"
+    "whisperx @ git+https://github.com/m-bain/whisperx.git@v3.8.1",
+    "openai-whisper @ git+https://github.com/openai/whisper.git@v20250625",
+]
+
+[tool.setuptools]
+py-modules = ["aautrans"]
+package-dir = {"" = "src"}

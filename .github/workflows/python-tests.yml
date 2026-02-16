@@ -41,7 +41,7 @@ jobs:
           hf auth login --token ${{ secrets.HF_TOKEN }}
           hf download pyannote/speaker-diarization-3.1 --cache-dir $HOME/.cache/torch/pyannote
           hf download pyannote/segmentation-3.0 --cache-dir $HOME/.cache/torch/pyannote
-          pip install --no-cache-dir -r "${{ github.workspace }}/requirements.txt"
+          pip install --no-cache-dir "${{ github.workspace }}"
           pip install --no-cache-dir -e "${{ github.workspace }}"
           alignment_py=$(python -c "import whisperx, os; print(os.path.join(os.path.dirname(whisperx.__file__), 'alignment.py'))")
           sed -i 's/^    tokens = torch\.tensor(tokens) if not isinstance(tokens, torch\.Tensor) else tokens$/    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens/' "$alignment_py"
