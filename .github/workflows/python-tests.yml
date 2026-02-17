@@ -23,7 +23,7 @@ jobs:
       - name: Install system packages
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libxml2-dev libxslt1-dev
+          sudo apt-get install -y ffmpeg
 
       # Step 3: Set up Python
       - name: Set up Python
@@ -49,6 +49,8 @@ jobs:
 
       # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
+        env:
+          PYANNOTE_CACHE_DIR: "/home/runner/.cache/torch/pyannote"
         run: |
           cd "${{ github.workspace }}"
           python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest

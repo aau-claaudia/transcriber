@@ -48,7 +48,8 @@ Install the aau-whisper package.
 ```bash
 pip install -e .
 ```
-
+Create a .env file with the following content:
+PYANNOTE_CACHE_DIR="/home/nikko/.cache/torch/pyannote/"
 ## Running transcriber locally
 Running with CPU on the base model.
 ```bash
