@@ -30,7 +30,8 @@ dependencies = [
     "whisperx @ git+https://github.com/m-bain/whisperx.git@v3.8.1",
     "openai-whisper @ git+https://github.com/openai/whisper.git@v20250625",
     "ffmpeg-python>=0.2.0",
-    "torchcodec~=0.7.0"
+    "torchcodec~=0.7.0",
+    "pyzipper~=0.3.6"
 ]
 
 [tool.setuptools]
