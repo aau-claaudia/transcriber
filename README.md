@@ -42,7 +42,7 @@ source .venv/bin/activate
 ```
 Install the dependencies.
 ```bash
-pip install -r requirements.txt
+pip install .
 ```
 Install the aau-whisper package.
 ```bash
