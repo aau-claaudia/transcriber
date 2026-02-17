@@ -160,7 +160,7 @@ def process_file(
 
         # 3. Assign speaker labels
         # Initialize the diarization pipeline
-        diarize_model = whisperx.diarize.DiarizationPipeline(use_auth_token=False, device=device)
+        diarize_model = whisperx.diarize.DiarizationPipeline(device=device)
         diarize_segments = diarize_model(audio, **speaker_params)
         result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
         result["language"] = language
