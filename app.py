@@ -17,8 +17,6 @@ from whispaau.utils import is_speaker_diarization_supported
 from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 
 def cli(args: dict[str, Any]) -> None:

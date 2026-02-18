@@ -25,8 +25,7 @@ Download the models for WhisperX.
 pip install --no-cache-dir -U "huggingface_hub[cli]"
 mkdir -p $HOME/.cache/torch/pyannote
 hf auth login --token YOUR_HF_TOKEN
-hf download pyannote/speaker-diarization-3.1 --cache-dir $HOME/.cache/torch/pyannote
-hf download pyannote/segmentation-3.0 --cache-dir $HOME/.cache/torch/pyannote
+hf download pyannote/speaker-diarization-community-1 --cache-dir ~/.cache/torch/pyannote/
 ```
 Install the linux tool ffmpeg.
 ```bash
@@ -48,8 +47,10 @@ Install the aau-whisper package.
 ```bash
 pip install -e .
 ```
-Create a .env file with the following content:
-PYANNOTE_CACHE_DIR="/home/nikko/.cache/torch/pyannote/"
+Create the environment variable (replace with your home dir).
+```bash
+export PYANNOTE_CACHE_DIR="/home/nikko/.cache/torch/pyannote/"
+```
 ## Running transcriber locally
 Running with CPU on the base model.
 ```bash

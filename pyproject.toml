@@ -33,8 +33,7 @@ dependencies = [
     "torchcodec~=0.7.0",
     "pyzipper~=0.3.6",
     "python-docx~=1.2.0",
-    "python-docx-ng~=0.9.7",
-    "dotenv"
+    "python-docx-ng~=0.9.7"
 ]
 
 [tool.setuptools]
