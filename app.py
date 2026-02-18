@@ -16,6 +16,7 @@ from whispaau.utils import MERGED_SPEAKERS_WRITERS
 from whispaau.utils import is_speaker_diarization_supported
 from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
+import os
 
 
 def cli(args: dict[str, Any]) -> None:
@@ -160,7 +161,7 @@ def process_file(
 
         # 3. Assign speaker labels
         # Initialize the diarization pipeline
-        diarize_model = whisperx.diarize.DiarizationPipeline(device=device)
+        diarize_model = whisperx.diarize.DiarizationPipeline(device=device, cache_dir=os.environ.get('PYANNOTE_CACHE_DIR'))
         diarize_segments = diarize_model(audio, **speaker_params)
         result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
         result["language"] = language
