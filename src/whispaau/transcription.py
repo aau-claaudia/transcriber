@@ -1,6 +1,10 @@
 from pathlib import Path
 from typing import List, TypedDict, Any, Dict, Union, Tuple
 from time import perf_counter_ns
+
+import numpy as np
+import librosa
+
 from whispaau.logging import Logger
 from abc import ABC, abstractmethod
 import whisper
@@ -31,7 +35,7 @@ class TranscriptionService(ABC):
     """Abstract base class for transcription services."""
 
     @abstractmethod
-    def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
+    def transcribe(self, file: Path, trans_arguments: Any) -> TranscriptionResult:
         """Transcribes an audio file and returns the result."""
         pass
 
@@ -107,7 +111,46 @@ class ParakeetTranscription(TranscriptionService):
         self.model = self.model.to(device)
 
     def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
-        output = self.model.transcribe([file.resolve().as_posix()], timestamps=True)
-        # TODO: create output format for further processing
-        print(output)
-        return {}
+        output = self.model.transcribe(convert_to_16k_mono_audio(file.resolve().as_posix()), timestamps=True)
+
+        # Extract text and timestamps
+        result_data = output[0]
+        text = result_data.text
+        #word_timestamps = result_data.timestamp.get("word", [])
+        segment_timestamps = result_data.timestamp.get("segment", [])
+        #print(f"Transcription: {text}")
+        #print(f"Segment data: {segment_timestamps}")
+
+        # Prepare output data
+        segments: List[TranscriptionSegment] = []
+        for i, item in enumerate(segment_timestamps, start=1):
+            # create the TranscriptionSegment, missing fields are set to defaults
+            seg: TranscriptionSegment = {
+                "id": i,
+                "seek": 0,
+                "start": item["start"],
+                "end": item["end"],
+                "text": item["segment"],
+                "tokens": [],
+                "temperature": 0.0,
+                "avg_logprob": 0.0,
+                "compression_ratio": 0.0,
+                "no_speech_prob": 0.0
+            }
+            segments.append(seg)
+        result: TranscriptionResult = {
+            "text": text,
+            "segments": segments,
+            "language": "en"
+        }
+        return result
+
+
+"""Convert audio to mono 16kHz"""
+def convert_to_16k_mono_audio(file: str) -> np.ndarray:
+    audio_arr, sr = librosa.load(file, sr=None)
+    if len(audio_arr.shape) > 1:
+        audio_arr = librosa.to_mono(audio_arr)
+    if sr != 16000:
+        audio_arr = librosa.resample(audio_arr, orig_sr=sr, target_sr=16000)
+    return audio_arr
