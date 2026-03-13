@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Transcriber"
-version = "1.17"
+version = "1.18"
 description = "Customised cli for AI transcription"
 authors = [
     {name = "Nikolaj Andersen"},
@@ -33,7 +33,12 @@ dependencies = [
     "torchcodec~=0.7.0",
     "pyzipper~=0.3.6",
     "python-docx~=1.2.0",
-    "python-docx-ng~=0.9.7"
+    "python-docx-ng~=0.9.7",
+    "nemo-toolkit[asr]",
+    "librosa",
+    "soundfile",
+    "ml-dtypes>=0.3.1,<0.5.0",
+    "onnx>=1.15.0,<1.18.0",
 ]
 
 [tool.setuptools]

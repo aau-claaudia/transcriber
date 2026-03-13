@@ -17,7 +17,7 @@ from whispaau.utils import is_speaker_diarization_supported
 from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
 import os
-
+from whispaau.transcription import transcribe
 
 def cli(args: dict[str, Any]) -> None:
     job_name = args.get("job_name")
@@ -64,11 +64,6 @@ def cli(args: dict[str, Any]) -> None:
 
     files = args.get("input")
 
-    start_time = perf_counter_ns()
-    model = whisper.load_model(model_name, device=device)
-
-    log.log_model_loading(model_name, start_time, perf_counter_ns())
-
     output_format = args.pop("output_format")
     writer = get_writer(output_format, output_dir, WRITERS)
     merge_writer = get_writer(output_format, output_dir, MERGED_SPEAKERS_WRITERS)
@@ -88,7 +83,6 @@ def cli(args: dict[str, Any]) -> None:
             file,
             output_dir,
             model_name,
-            model,
             device,
             use_cuda,
             writer,
@@ -127,7 +121,6 @@ def process_file(
     file: Path,
     output_dir,
     model_name,
-    model,
     device,
     use_cuda,
     writer,
@@ -137,13 +130,11 @@ def process_file(
     options: dict[str, Any],
     speaker_params,
 ) -> None:
-    log.log_file_start(file, device)
+    duration: float = log.log_file_start(file, device)
     start_time = perf_counter_ns()
 
-    # 1. Transcribe with original whisper
-    transcribed_result: dict[str, Any] = model.transcribe(
-        file.resolve().as_posix(), **trans_arguments
-    )
+    transcribed_result = transcribe(model_name, file, trans_arguments, device, log, duration)
+
     language = transcribed_result["language"]
 
     result: dict[str, Any] = {}
@@ -166,10 +157,10 @@ def process_file(
         result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
         result["language"] = language
 
-        # transfer model specific attributes from whisper transcription to the diarized segments array
+        # transfer model specific attributes from transcription to the diarized segments array
         transfer_model_attributes(transcribed_result["segments"], result["segments"])
     else:
-        # use whisper transcription output without speaker diarization
+        # use transcription output without speaker diarization
         result = transcribed_result
         speaker_merge_enabled = False
         print(f"Speaker diarization is disabled. There is no alignment model for this language.")
@@ -179,7 +170,7 @@ def process_file(
         output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
     )
     if not result["segments"]:
-        # empty output from the whisper algorithm
+        # empty output from the transcription algorithm
         print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
     else:
         writer(
