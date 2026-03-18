@@ -109,10 +109,8 @@ class ParakeetTranscription(TranscriptionService):
         self.model = nemo_asr.models.ASRModel.from_pretrained(model_name="nvidia/parakeet-tdt-0.6b-v3", map_location=device)
         self.log.log_model_loading(self.model_name, start_time, perf_counter_ns())
         self.sample_rate = 16000 # 16kHz
-        self.chunk_length_s: int = 30
-        self.overlap_s: int = 1
-        self.batch_size: int = 16
-        self.buffering_threshold: int = 300
+        self.chunk_length_s: int = 30 # 30 seconds
+        self.buffering_threshold: int = 300 # 5 minutes
         if duration > 30:
             log.get_logger().info("Audio longer than 30 seconds, using long form transcription.")
             # updating self-attention model of fast-conformer encoder
@@ -123,7 +121,7 @@ class ParakeetTranscription(TranscriptionService):
     def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
         audio = convert_to_16k_mono_audio(self.sample_rate, file.resolve().as_posix())
 
-        if self.duration > 60: #TODO: change to: self.duration > self.buffering_threshold:
+        if self.duration > self.buffering_threshold:
             # if the audio is longer than 5 minutes transcribe in chunks to manage memory consumption
             return self.transcribe_buffered(audio)
         else:
@@ -140,8 +138,6 @@ class ParakeetTranscription(TranscriptionService):
     def transcribe_buffered(self, audio) -> dict[str, Any]:
         # Calculate chunk and overlap lengths in samples
         chunk_len_samples = self.chunk_length_s * self.sample_rate
-        overlap_samples = 8000 # = self.overlap_s * self.sample_rate # TODO: experimenting with half a second
-        step = chunk_len_samples - overlap_samples
 
         # Create a temporary directory for chunks
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -161,13 +157,12 @@ class ParakeetTranscription(TranscriptionService):
                     'duration': len(chunk) / self.sample_rate
                 })
 
-                start += step
+                start += chunk_len_samples
                 idx += 1
             self.log.get_logger().info(f"Audio was split into {len(chunks)} chunks.")
 
             # Transcribe all chunks
             self.log.get_logger().info(f"Transcribing chunks...")
-            #all_words = []
             all_segments = []
             full_text: str = ""
             for i, chunk_info in enumerate(chunks):
@@ -185,7 +180,7 @@ class ParakeetTranscription(TranscriptionService):
 
                 # Extract and adjust timestamps
                 if hasattr(result_data, 'timestamp') and result_data.timestamp:
-                    chunk_words = result_data.timestamp.get("word", [])
+                    #chunk_words = result_data.timestamp.get("word", [])
                     chunk_segments = result_data.timestamp.get("segment", [])
 
                     # Adjust timestamps by chunk start time
@@ -199,7 +194,7 @@ class ParakeetTranscription(TranscriptionService):
                         segment['end'] += chunk_info['start_time']
                         all_segments.append(segment)
 
-                self.log.get_logger().info(f"Chunk {i + 1} complete: {len(chunk_text)} characters")
+                self.log.get_logger().info(f"Chunk {i + 1} complete.")
 
             # Prepare output data
             result = prepare_output(all_segments, full_text)
