@@ -62,9 +62,7 @@ def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: L
         # This factory determines which transcription strategy to use.
         if model_family in whisper.available_models():
             _model_cache[cache_key] = WhisperTranscription(model_name, device, log, duration)
-        elif "canary" in model_family:
-            _model_cache[cache_key] = CanaryTranscription(model_name, log, duration)
-        elif "parakeet" in model_family:
+        elif "nvidia/parakeet-tdt-0.6b-v3" in model_family:
             _model_cache[cache_key] = ParakeetTranscription(model_name, device, log, duration)
         else:
             log.get_logger().error(f"Unknown model family for model_name: {model_name}")
@@ -90,23 +88,14 @@ class WhisperTranscription(TranscriptionService):
         return transcription
 
 
-class CanaryTranscription(TranscriptionService):
-    """ Transcription with the NVIDIA canary model """
-    def __init__(self, model_name: str, log: Logger, duration: float):
-        pass
-
-    def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
-        raise NotImplementedError("CanaryTranscription is not yet implemented.")
-
-
 class ParakeetTranscription(TranscriptionService):
-    """ Transcription with the NVIDIA parakeet model """
+    """ Transcription with the NVIDIA model: nvidia/parakeet-tdt-0.6b-v3 """
     def __init__(self, model_name: str, device, log: Logger, duration: float):
         self.log = log
         self.model_name = model_name
         self.duration = duration
         start_time = perf_counter_ns()
-        self.model = nemo_asr.models.ASRModel.from_pretrained(model_name="nvidia/parakeet-tdt-0.6b-v3", map_location=device)
+        self.model = nemo_asr.models.ASRModel.from_pretrained(model_name=self.model_name, map_location=device)
         self.log.log_model_loading(self.model_name, start_time, perf_counter_ns())
         self.sample_rate = 16000 # 16kHz
         self.chunk_length_s: int = 30 # 30 seconds
