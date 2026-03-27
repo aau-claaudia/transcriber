@@ -29,7 +29,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
+          python-version: '3.13'
 
       # Step 4: Install transcriber
       - name: Install transcriber
@@ -40,11 +40,7 @@ jobs:
           mkdir -p $HOME/.cache/torch/pyannote
           hf auth login --token ${{ secrets.HF_TOKEN }}
           hf download pyannote/speaker-diarization-community-1 --cache-dir $HOME/.cache/torch/pyannote
-          pip install --no-cache-dir "${{ github.workspace }}"
           pip install --no-cache-dir -e "${{ github.workspace }}"
-          alignment_py=$(python -c "import whisperx, os; print(os.path.join(os.path.dirname(whisperx.__file__), 'alignment.py'))")
-          sed -i 's/^    tokens = torch\.tensor(tokens) if not isinstance(tokens, torch\.Tensor) else tokens$/    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens/' "$alignment_py"
-          grep "tokens = torch" "$alignment_py"
           echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
 
       # Step 5: Run transcriber to generate output files for end-to-end test
