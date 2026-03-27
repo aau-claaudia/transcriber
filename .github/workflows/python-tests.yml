@@ -40,6 +40,7 @@ jobs:
           mkdir -p $HOME/.cache/torch/pyannote
           hf auth login --token ${{ secrets.HF_TOKEN }}
           hf download pyannote/speaker-diarization-community-1 --cache-dir $HOME/.cache/torch/pyannote
+          pip install --no-cache-dir libxml2-dev libxslt-dev
           pip install --no-cache-dir -e "${{ github.workspace }}"
           echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
 
