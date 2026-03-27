@@ -40,7 +40,7 @@ jobs:
           mkdir -p $HOME/.cache/torch/pyannote
           hf auth login --token ${{ secrets.HF_TOKEN }}
           hf download pyannote/speaker-diarization-community-1 --cache-dir $HOME/.cache/torch/pyannote
-          pip install --no-cache-dir -e "${{ github.workspace }}"
+          pip install --no-cache-dir -e "${{ github.workspace }}" lxml==5.3.0
           echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
 
       # Step 5: Run transcriber to generate output files for end-to-end test
