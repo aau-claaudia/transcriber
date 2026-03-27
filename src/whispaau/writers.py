@@ -127,10 +127,6 @@ class WriteDOCX(ResultWriter):
             document = docx.Document()
             document.add_heading(audio_filename, level=2)
             document.add_heading(options["jobname"], level=4)
-            document.extended_properties.set_property("total_time", "   1")
-            document.extended_properties.set_property(
-                "application", "Whisper Transcription AAU extension"
-            )
             document.core_properties.title = audio_filename
             document.core_properties.author = options.get("username", "")
             document.core_properties.subject = options.get("jobname", "")
