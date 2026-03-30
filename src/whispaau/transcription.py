@@ -116,9 +116,9 @@ class ParakeetTranscription(TranscriptionService):
             return self.transcribe_buffered(audio)
         else:
             output = self.model.transcribe(
-                file,
+                paths2audio_files=[file],
                 batch_size=1,
-                timestamps=True,
+                return_hypotheses=True,
             )
             # Extract text and timestamps
             result_data = output[0]
@@ -163,9 +163,9 @@ class ParakeetTranscription(TranscriptionService):
                 self.log.get_logger().info(f"Transcribing chunk {i + 1}/{len(chunks)} (duration: {chunk_info['duration']:.1f}s)...")
                 # Transcribe chunk
                 output = self.model.transcribe(
-                    chunk_info['audio_path'],
+                    paths2audio_files=[chunk_info['audio_path']],
                     batch_size=1,
-                    timestamps=True,
+                    return_hypotheses=True,
                 )
 
                 result_data = output[0]
