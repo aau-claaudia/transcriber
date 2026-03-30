@@ -114,7 +114,7 @@ class ParakeetTranscription(TranscriptionService):
             # if the audio is longer than 5 minutes transcribe in chunks to manage memory consumption
             return self.transcribe_buffered(audio)
         else:
-            output = self.model.transcribe(audio, timestamps=True)
+            output = self.model.transcribe(audio)
             # Extract text and timestamps
             result_data = output[0]
             text = result_data.text
