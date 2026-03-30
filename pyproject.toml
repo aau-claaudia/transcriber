@@ -35,6 +35,8 @@ dependencies = [
     "python-docx~=1.2.0",
     "nemo-toolkit[asr]",
     "librosa",
+    "pyarrow>=17.0.0",
+    "datasets>=3.0.0",
     "soundfile",
     "ml-dtypes>=0.5.0",
     #"onnx>=1.15.0,<1.18.0", # TODO: why smaller than 1.18 (Python 3.13 from 1.18)
