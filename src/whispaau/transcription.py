@@ -106,7 +106,6 @@ class ParakeetTranscription(TranscriptionService):
             # setting attention left and right context sizes to 256
             self.model.change_attention_model(self_attention_model="rel_pos_local_attn", att_context_size=[256, 256])
         self.model = self.model.to(device)
-        print(f"********** debugging, duration: {str(duration)}")
 
     def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
         audio = convert_to_16k_mono_audio(self.sample_rate, file.resolve().as_posix())
@@ -116,7 +115,7 @@ class ParakeetTranscription(TranscriptionService):
             return self.transcribe_buffered(audio)
         else:
             output = self.model.transcribe(
-                paths2audio_files=[file],
+                [file],
                 batch_size=1,
                 return_hypotheses=True,
             )
@@ -163,7 +162,7 @@ class ParakeetTranscription(TranscriptionService):
                 self.log.get_logger().info(f"Transcribing chunk {i + 1}/{len(chunks)} (duration: {chunk_info['duration']:.1f}s)...")
                 # Transcribe chunk
                 output = self.model.transcribe(
-                    paths2audio_files=[chunk_info['audio_path']],
+                    [chunk_info['audio_path']],
                     batch_size=1,
                     return_hypotheses=True,
                 )
