@@ -217,9 +217,5 @@ def prepare_output(all_segments, full_text):
 
 """Convert audio to mono 16kHz"""
 def convert_to_16k_mono_audio(sample_rate, file: str) -> np.ndarray:
-    audio_arr, sr = librosa.load(file, sr=None)
-    if len(audio_arr.shape) > 1:
-        audio_arr = librosa.to_mono(audio_arr)
-    if sr != sample_rate:
-        audio_arr = librosa.resample(audio_arr, orig_sr=sr, target_sr=sample_rate)
+    audio_arr, _ = librosa.load(file, sr=sample_rate, mono=True)
     return audio_arr
