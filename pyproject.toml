@@ -36,7 +36,7 @@ dependencies = [
     "nemo-toolkit[asr]",
     "librosa",
     "soundfile",
-    "ml-dtypes>=0.3.1,<0.5.0",
+    "ml-dtypes>=0.5.0",
     #"onnx>=1.15.0,<1.18.0", # TODO: why smaller than 1.18 (Python 3.13 from 1.18)
     "onnx>=1.18.0",
     "librosa"
