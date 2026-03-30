@@ -50,6 +50,7 @@ jobs:
         run: |
           cd "${{ github.workspace }}"
           python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
+          python app.py -o ./tests/output -d tests/resources/end2end/input -m parakeet --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest2
 
       # Step 6: Run application tests
       - name: Run application tests

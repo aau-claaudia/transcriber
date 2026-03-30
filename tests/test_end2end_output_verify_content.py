@@ -69,6 +69,7 @@ class TestTranscriptionOutput(unittest.TestCase):
     def setUp(self):
         current_path = Path(os.path.dirname(os.path.realpath(__file__)))
         self.dialogue_path = current_path / "output" / "DIALOGUE_small_en_merged.dote.json"
+        self.dialogue_path_parakeet = current_path / "output" / "DIALOGUE_parakeet_en_merged.dote.json"
         self.shorts_path = current_path / "output" / "shorts_small_da_merged.dote.json"
         self.dialogue_output_path = current_path / "resources" / "end2end" / "DIALOGUE_OUTPUT.txt"
         self.shorts_output_path = current_path / "resources" / "end2end" / "SHORTS_OUTPUT.txt"
@@ -80,6 +81,12 @@ class TestTranscriptionOutput(unittest.TestCase):
         self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
         self.generated_output_dialogue = result
         self.generated_first_speaker_dialogue = parser.parse_first_speaker()
+
+        parser = TranscriptionParser(self.dialogue_path_parakeet)
+        result = parser.parse_and_concatenate()
+        self.assertIsNotNone(result, "No text could be parsed from the generated output file!")
+        self.generated_output_dialogue_parakeet = result
+        self.generated_first_speaker_dialogue_parakeet = parser.parse_first_speaker()
 
         parser = TranscriptionParser(self.shorts_path)
         result = parser.parse_and_concatenate()
@@ -109,12 +116,20 @@ class TestTranscriptionOutput(unittest.TestCase):
         # Verify content for DIALOGUE_small_en_merged.dote.json
         # Load expected transcription output
         print("Running end2end test - verifying output generated from input file: DIALOGUE.m4a")
+        print("Verifying output generated from whisper/small...")
         expected_output = read_file_as_string(self.dialogue_output_path)
 
         self.compare_fuzzy(expected_output, self.generated_output_dialogue, 0.88)
 
         # Verify the speaker has been created properly
         self.assertEqual(self.generated_first_speaker_dialogue, "SPEAKER_00", "The speaker has not been created!")
+
+        print("Verifying output generated from nvidia/parakeet...")
+        self.compare_fuzzy(expected_output, self.generated_output_dialogue_parakeet, 0.88)
+
+        # Verify the speaker has been created properly
+        self.assertEqual(self.generated_first_speaker_dialogue_parakeet, "SPEAKER_00", "The speaker has not been created!")
+
 
     def test_transcription_output_shorts(self):
         # Verify content for shorts_small_da_merged.dote.json

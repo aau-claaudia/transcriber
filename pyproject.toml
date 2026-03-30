@@ -39,9 +39,7 @@ dependencies = [
     "datasets>=3.0.0",
     "soundfile",
     "ml-dtypes>=0.5.0",
-    #"onnx>=1.15.0,<1.18.0", # TODO: why smaller than 1.18 (Python 3.13 from 1.18)
-    "onnx>=1.18.0",
-    "librosa"
+    "onnx>=1.18.0"
 ]
 
 [tool.setuptools]
