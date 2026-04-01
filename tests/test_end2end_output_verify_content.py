@@ -125,6 +125,11 @@ class TestTranscriptionOutput(unittest.TestCase):
         self.assertEqual(self.generated_first_speaker_dialogue, "SPEAKER_00", "The speaker has not been created!")
 
         print("Verifying output generated from nvidia/parakeet...")
+        print("Debugging...")
+        print("Expected: \n")
+        print(expected_output)
+        print("Actual: \n")
+        print(self.generated_output_dialogue_parakeet)
         self.compare_fuzzy(expected_output, self.generated_output_dialogue_parakeet, 0.88)
 
         # Verify the speaker has been created properly
