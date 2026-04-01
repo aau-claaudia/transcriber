@@ -135,61 +135,65 @@ def process_file(
 
     transcribed_result = transcribe(model_name, file, trans_arguments, device, log, duration)
 
-    language = transcribed_result["language"]
+    if "segments" in transcribed_result:
+        language = transcribed_result["language"]
 
-    result: dict[str, Any] = {}
-    # check if speaker diarization is supported for this language
-    if is_speaker_diarization_supported(language):
-        # 2. Align whisper output
-        audio = whisperx.load_audio(file.resolve().as_posix())
-        model_a, metadata = whisperx.load_align_model(language_code=language, device=device)
-        aligned_result = whisperx.align(transcribed_result["segments"], model_a, metadata, audio, device, return_char_alignments=False)
-        # garbage collect memory
-        gc.collect()
-        if use_cuda:
-            torch.cuda.empty_cache()
-        del model_a
+        result: dict[str, Any] = {}
+        # check if speaker diarization is supported for this language
+        if is_speaker_diarization_supported(language):
+            # 2. Align whisper output
+            audio = whisperx.load_audio(file.resolve().as_posix())
+            model_a, metadata = whisperx.load_align_model(language_code=language, device=device)
+            aligned_result = whisperx.align(transcribed_result["segments"], model_a, metadata, audio, device, return_char_alignments=False)
+            # garbage collect memory
+            gc.collect()
+            if use_cuda:
+                torch.cuda.empty_cache()
+            del model_a
 
-        # 3. Assign speaker labels
-        # Initialize the diarization pipeline
-        diarize_model = whisperx.diarize.DiarizationPipeline(device=device, cache_dir=os.environ.get('PYANNOTE_CACHE_DIR'))
-        diarize_segments = diarize_model(audio, **speaker_params)
-        result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
-        result["language"] = language
+            # 3. Assign speaker labels
+            # Initialize the diarization pipeline
+            diarize_model = whisperx.diarize.DiarizationPipeline(device=device, cache_dir=os.environ.get('PYANNOTE_CACHE_DIR'))
+            diarize_segments = diarize_model(audio, **speaker_params)
+            result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
+            result["language"] = language
 
-        # transfer model specific attributes from transcription to the diarized segments array
-        transfer_model_attributes(transcribed_result["segments"], result["segments"])
+            # transfer model specific attributes from transcription to the diarized segments array
+            transfer_model_attributes(transcribed_result["segments"], result["segments"])
+        else:
+            # use transcription output without speaker diarization
+            result = transcribed_result
+            speaker_merge_enabled = False
+            print(f"Speaker diarization is disabled. There is no alignment model for this language.")
+
+        # write output files
+        output_file = (
+            output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
+        )
+        if not result["segments"]:
+            # empty output from the transcription algorithm
+            print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
+        else:
+            writer(
+                result,
+                output_file,
+                options,
+            )
+            # if speaker_merge_enabled then also write merged file formats
+            if speaker_merge_enabled and (merge_writer is not None):
+                output_file_merged_speakers = (
+                        output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+                )
+                merge_writer(
+                    merge_speakers(result),
+                    output_file_merged_speakers,
+                    options
+                )
+                # reset the merge speaker data
+                reset_merge_speaker_data()
     else:
-        # use transcription output without speaker diarization
-        result = transcribed_result
-        speaker_merge_enabled = False
-        print(f"Speaker diarization is disabled. There is no alignment model for this language.")
-
-    # write output files
-    output_file = (
-        output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
-    )
-    if not result["segments"]:
         # empty output from the transcription algorithm
         print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
-    else:
-        writer(
-            result,
-            output_file,
-            options,
-        )
-        # if speaker_merge_enabled then also write merged file formats
-        if speaker_merge_enabled and (merge_writer is not None):
-            output_file_merged_speakers = (
-                    output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
-            )
-            merge_writer(
-                merge_speakers(result),
-                output_file_merged_speakers,
-                options
-            )
-            # reset the merge speaker data
-            reset_merge_speaker_data()
 
     log.log_file_end(file, start_time, perf_counter_ns())
 

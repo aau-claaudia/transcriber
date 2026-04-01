@@ -5,9 +5,9 @@ from typing import List, TypedDict, Any, Dict, Union, Tuple
 from time import perf_counter_ns
 
 import numpy as np
-import librosa
-import soundfile as sf
-
+import torchaudio.transforms as T
+import torch
+import torchaudio
 from whispaau.logging import Logger
 from abc import ABC, abstractmethod
 import whisper
@@ -108,28 +108,28 @@ class ParakeetTranscription(TranscriptionService):
         self.model = self.model.to(device)
 
     def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
-        audio = convert_to_16k_mono_audio(self.sample_rate, file.resolve().as_posix())
+        audio = convert_to_16k_mono_audio(file.resolve().as_posix())
 
         if self.duration > self.buffering_threshold:
             # if the audio is longer than 5 minutes transcribe in chunks to manage memory consumption
             return self.transcribe_buffered(audio)
         else:
-            output = self.model.transcribe(
+            hypotheses = self.model.transcribe(
                 audio,
                 batch_size=1,
-                return_hypotheses=True,
+                return_hypotheses=True
             )
-            # Extract text and timestamps
-            result_data = output[0]
-            text = result_data.text
-            #word_timestamps = result_data.timestamp.get("word", [])
-            segment_timestamps = result_data.timestamp.get("segment", [])
-            # Prepare output data
-            result = prepare_output(segment_timestamps, text)
-            return result
+            if hypotheses and len(hypotheses) > 0:
+                segments, full_text = prepare_segments(hypotheses)
+
+                # Prepare output data
+                result = prepare_output(segments, full_text)
+                return result
+            else:
+                return {}
 
     def transcribe_buffered(self, audio) -> dict[str, Any]:
-        # Calculate chunk and overlap lengths in samples
+        # Calculate chunk lengths in samples
         chunk_len_samples = self.chunk_length_s * self.sample_rate
 
         # Create a temporary directory for chunks
@@ -142,7 +142,12 @@ class ParakeetTranscription(TranscriptionService):
                 chunk = audio[start:end]
 
                 chunk_filepath = os.path.join(temp_dir, f"chunk_{idx}.wav")
-                sf.write(chunk_filepath, chunk, self.sample_rate)
+                # Ensure chunk is a tensor and has the shape (channels, frames)
+                chunk_tensor = torch.as_tensor(chunk)
+                if chunk_tensor.ndim == 1:
+                    chunk_tensor = chunk_tensor.unsqueeze(0)
+                # save file
+                torchaudio.save(chunk_filepath, chunk_tensor, self.sample_rate)
 
                 chunks.append({
                     'audio_path': chunk_filepath,
@@ -157,42 +162,67 @@ class ParakeetTranscription(TranscriptionService):
             # Transcribe all chunks
             self.log.get_logger().info(f"Transcribing chunks...")
             all_segments = []
-            full_text: str = ""
+            final_full_text: str = ""
             for i, chunk_info in enumerate(chunks):
                 self.log.get_logger().info(f"Transcribing chunk {i + 1}/{len(chunks)} (duration: {chunk_info['duration']:.1f}s)...")
                 # Transcribe chunk
-                output = self.model.transcribe(
-                    str(chunk_info['audio_path']),
+                waveform, sr = torchaudio.load(str(chunk_info['audio_path']))
+                hypotheses = self.model.transcribe(
+                    waveform.squeeze().to(torch.float32).numpy(),
                     batch_size=1,
                     return_hypotheses=True,
                 )
+                if hypotheses and len(hypotheses) > 0:
+                    segments, full_text = prepare_segments(hypotheses)
+                    final_full_text.join(full_text)
 
-                result_data = output[0]
-                chunk_text = result_data.text
-                full_text.join(chunk_text)
-
-                # Extract and adjust timestamps
-                if hasattr(result_data, 'timestamp') and result_data.timestamp:
-                    #chunk_words = result_data.timestamp.get("word", [])
-                    chunk_segments = result_data.timestamp.get("segment", [])
-
-                    # Adjust timestamps by chunk start time
-                    #for word in chunk_words:
-                    #    word['start'] += chunk_info['start_time']
-                    #    word['end'] += chunk_info['start_time']
-                    #    all_words.append(word)
-
-                    for segment in chunk_segments:
+                    for segment in segments:
                         segment['start'] += chunk_info['start_time']
                         segment['end'] += chunk_info['start_time']
                         all_segments.append(segment)
-
                 self.log.get_logger().info(f"Chunk {i + 1} complete.")
 
             # Prepare output data
-            result = prepare_output(all_segments, full_text)
+            result = prepare_output(all_segments, final_full_text)
             return result
 
+def prepare_segments(hypotheses):
+    # Transform the Hypothesis into a segment-based format
+    segments = []
+    full_text: str = ""
+    # Use the first and most probable hypothesis
+    hypo = hypotheses[0][0]
+    # Parakeet models typically have a frame shift of 0.08s (80ms)
+    frame_shift = 0.08
+    gap_threshold = 1.0  # Split segment if silence is > 1.0s
+
+    words = hypo.text.split()
+    num_words = len(words)
+    num_ticks = len(hypo.timestep)
+
+    current_words = []
+    start_time = float(hypo.timestep[0]) * frame_shift
+
+    for i in range(num_words):
+        current_words.append(words[i])
+        # Map word index to approximate timestep index
+        tick_idx = min(int((i / num_words) * num_ticks), num_ticks - 1)
+        next_tick_idx = min(int(((i + 1) / num_words) * num_ticks), num_ticks - 1)
+
+        pause_duration = (float(hypo.timestep[next_tick_idx]) - float(hypo.timestep[tick_idx])) * frame_shift
+
+        if (pause_duration > gap_threshold or i == num_words - 1) and current_words:
+            text = " ".join(current_words)
+            segments.append({
+                "text": text,
+                "start": round(start_time, 3),
+                "end": round(float(hypo.timestep[tick_idx]) * frame_shift, 3)
+            })
+            full_text.join(text)
+            if i < num_words - 1:
+                start_time = float(hypo.timestep[next_tick_idx]) * frame_shift
+                current_words = []
+    return segments, full_text
 
 def prepare_output(all_segments, full_text):
     segments: List[TranscriptionSegment] = []
@@ -203,7 +233,7 @@ def prepare_output(all_segments, full_text):
             "seek": 0,
             "start": item["start"],
             "end": item["end"],
-            "text": item["segment"],
+            "text": item["text"],
             "tokens": [],
             "temperature": 0.0,
             "avg_logprob": 0.0,
@@ -220,6 +250,16 @@ def prepare_output(all_segments, full_text):
 
 
 """Convert audio to mono 16kHz"""
-def convert_to_16k_mono_audio(sample_rate, file: str) -> np.ndarray:
-    audio_arr, _ = librosa.load(file, sr=sample_rate, mono=True)
-    return audio_arr
+def convert_to_16k_mono_audio(file: str, sample_rate: int = 16000) -> np.ndarray:
+    waveform, sr = torchaudio.load(file)
+
+    # Convert to mono if stereo
+    if waveform.shape[0] > 1:
+        waveform = torch.mean(waveform, dim=0, keepdim=True)
+
+    # Resample if the sample rate doesn't match
+    if sr != sample_rate:
+        resampler = T.Resample(sr, sample_rate)
+        waveform = resampler(waveform)
+
+    return waveform.squeeze().to(torch.float32).numpy()
