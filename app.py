@@ -95,16 +95,19 @@ def cli(args: dict[str, Any]) -> None:
     if args.get("transcriber_gui"):
         # If running from the transcriber GUI the user can have multiple runs with different models
         # Get all available model names
-        whisper_model_names = whisper.available_models()
+        all_models = []
+        for model in whisper.available_models():
+            all_models.append(model)
+        all_models.append("parakeet")
         # Include files for all model names
         files_to_pack = [
         path
-        for whisper_model_name in whisper_model_names
-        for path in output_dir.glob(f"*_{whisper_model_name}_*")
+        for transcription_model_name in all_models
+        for path in output_dir.glob(f"*_{transcription_model_name}*")
         if path.is_file()
         ]
     else:
-        files_to_pack = [path for path in output_dir.glob(f"*_{model_name}_*") if path.is_file()]
+        files_to_pack = [path for path in output_dir.glob(f"*_{model_name}*") if path.is_file()]
 
     # Pack everything into a process_name.zip
     job_name_directory = Path(job_name)
@@ -167,8 +170,9 @@ def process_file(
             print(f"Speaker diarization is disabled. There is no alignment model for this language.")
 
         # write output files
+        lang_suffix = "" if "parakeet" in model_name.lower() else f"_{result.get('language', '--')}"
         output_file = (
-            output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
+            output_dir / f"{file.stem}_{model_name}{lang_suffix}"
         )
         if not result["segments"]:
             # empty output from the transcription algorithm
@@ -182,7 +186,7 @@ def process_file(
             # if speaker_merge_enabled then also write merged file formats
             if speaker_merge_enabled and (merge_writer is not None):
                 output_file_merged_speakers = (
-                        output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+                        output_dir / f"{file.stem}_{model_name}{lang_suffix}_merged"
                 )
                 merge_writer(
                     merge_speakers(result),
