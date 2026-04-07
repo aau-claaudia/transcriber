@@ -189,7 +189,7 @@ class ParakeetTranscription(TranscriptionService):
 def prepare_segments(hypotheses):
     # Transform the Hypothesis into a segment-based format
     segments = []
-    full_text: str = ""
+    full_text = []
     # Use the first and most probable hypothesis
     hypo = hypotheses[0][0]
     # Parakeet models typically have a frame shift of 0.08s (80ms)
@@ -218,11 +218,11 @@ def prepare_segments(hypotheses):
                 "start": round(start_time, 3),
                 "end": round(float(hypo.timestep[tick_idx]) * frame_shift, 3)
             })
-            full_text.join(text)
+            full_text.append(text)
             if i < num_words - 1:
                 start_time = float(hypo.timestep[next_tick_idx]) * frame_shift
                 current_words = []
-    return segments, full_text
+    return segments, " ".join(full_text)
 
 def prepare_output(all_segments, full_text):
     segments: List[TranscriptionSegment] = []
