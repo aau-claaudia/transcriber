@@ -39,6 +39,7 @@ class TestDirectoryStructure(unittest.TestCase):
             "shorts_small_da.tsv",
             "shorts_small_da.txt",
             "shorts_small_da.vtt",
+            "DIALOGUE_parakeet.aud",
             "DIALOGUE_parakeet.csv",
             "DIALOGUE_parakeet.docx",
             "DIALOGUE_parakeet.dote.json",

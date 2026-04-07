@@ -69,7 +69,7 @@ class TestTranscriptionOutput(unittest.TestCase):
     def setUp(self):
         current_path = Path(os.path.dirname(os.path.realpath(__file__)))
         self.dialogue_path = current_path / "output" / "DIALOGUE_small_en_merged.dote.json"
-        self.dialogue_path_parakeet = current_path / "output" / "DIALOGUE_parakeet_en_merged.dote.json"
+        self.dialogue_path_parakeet = current_path / "output" / "DIALOGUE_parakeet_merged.dote.json"
         self.shorts_path = current_path / "output" / "shorts_small_da_merged.dote.json"
         self.dialogue_output_path = current_path / "resources" / "end2end" / "DIALOGUE_OUTPUT.txt"
         self.dialogue_parakeet_output_path = current_path / "resources" / "end2end" / "DIALOGUE_OUTPUT_parakeet-tdt-0.6b-v3.txt"
