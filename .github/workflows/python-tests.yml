@@ -42,6 +42,7 @@ jobs:
           hf download pyannote/speaker-diarization-community-1 --cache-dir $HOME/.cache/torch/pyannote
           pip install --no-cache-dir -e "${{ github.workspace }}"
           echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
+          pip freeze | grep torch
 
       # Step 5: Run transcriber to generate output files for end-to-end test
       - name: Run transcriber
