@@ -33,13 +33,15 @@ dependencies = [
     "torchcodec~=0.7.0",
     "pyzipper~=0.3.6",
     "python-docx~=1.2.0",
-    "nemo-toolkit[asr]",
-    "librosa",
-    "soundfile",
+    "nemo-toolkit[asr]>=2.0.0",
+    "librosa>=0.10.2",
+    "soundfile>=0.13.0",
+    "soxr",
+    "numba>=0.61.0",
     "pyarrow>=17.0.0",
     "datasets>=3.0.0",
-    "ml-dtypes>=0.3.1,<0.5.0",
-    "onnx>=1.15.0,<1.18.0"
+    "ml-dtypes>=0.5.0",
+    "onnx>=1.18.0"
 ]
 
 [tool.setuptools]

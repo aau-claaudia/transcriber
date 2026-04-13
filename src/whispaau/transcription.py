@@ -114,16 +114,16 @@ class ParakeetTranscription(TranscriptionService):
             # if the audio is longer than 5 minutes transcribe in chunks to manage memory consumption
             return self.transcribe_buffered(audio)
         else:
-            output = self.model.transcribe(audio, timestamps=True)
-            if output and len(output) > 0:
-                # Extract text and timestamps
-                result_data = output[0]
-                text = result_data.text
-                #word_timestamps = result_data.timestamp.get("word", [])
-                segment_timestamps = result_data.timestamp.get("segment", [])
+            hypotheses = self.model.transcribe(
+                audio,
+                batch_size=1,
+                return_hypotheses=True
+            )
+            if hypotheses and len(hypotheses) > 0:
+                segments, full_text = prepare_segments(hypotheses)
 
                 # Prepare output data
-                result = prepare_output(segment_timestamps, text)
+                result = prepare_output(segments, full_text)
                 return result
             else:
                 return {}
@@ -162,42 +162,67 @@ class ParakeetTranscription(TranscriptionService):
             # Transcribe all chunks
             self.log.get_logger().info(f"Transcribing chunks...")
             all_segments = []
-            full_text = []
+            final_full_text: str = ""
             for i, chunk_info in enumerate(chunks):
                 self.log.get_logger().info(f"Transcribing chunk {i + 1}/{len(chunks)} (duration: {chunk_info['duration']:.1f}s)...")
                 # Transcribe chunk
-                output = self.model.transcribe(
-                    chunk_info['audio_path'],
+                waveform, sr = torchaudio.load(str(chunk_info['audio_path']))
+                hypotheses = self.model.transcribe(
+                    waveform.squeeze().to(torch.float32).numpy(),
                     batch_size=1,
-                    timestamps=True,
+                    return_hypotheses=True,
                 )
+                if hypotheses and len(hypotheses) > 0:
+                    segments, full_text = prepare_segments(hypotheses)
+                    final_full_text.join(full_text)
 
-                result_data = output[0]
-                chunk_text = result_data.text
-                full_text.append(chunk_text)
-
-                # Extract and adjust timestamps
-                if hasattr(result_data, 'timestamp') and result_data.timestamp:
-                    #chunk_words = result_data.timestamp.get("word", [])
-                    chunk_segments = result_data.timestamp.get("segment", [])
-
-                    # Adjust timestamps by chunk start time
-                    #for word in chunk_words:
-                    #    word['start'] += chunk_info['start_time']
-                    #    word['end'] += chunk_info['start_time']
-                    #    all_words.append(word)
-
-                    for segment in chunk_segments:
+                    for segment in segments:
                         segment['start'] += chunk_info['start_time']
                         segment['end'] += chunk_info['start_time']
                         all_segments.append(segment)
-
                 self.log.get_logger().info(f"Chunk {i + 1} complete.")
 
             # Prepare output data
-            result = prepare_output(all_segments, " ".join(full_text))
+            result = prepare_output(all_segments, final_full_text)
             return result
 
+def prepare_segments(hypotheses):
+    # Transform the Hypothesis into a segment-based format
+    segments = []
+    full_text = []
+    hypo = hypotheses[0]
+    print(hypotheses[0])
+    # Parakeet models typically have a frame shift of 0.08s (80ms)
+    frame_shift = 0.08
+    gap_threshold = 1.0  # Split segment if silence is > 1.0s
+
+    words = hypo.text.split()
+    num_words = len(words)
+    num_ticks = len(hypo.timestamp)
+
+    current_words = []
+    start_time = float(hypo.timestamp[0]) * frame_shift
+
+    for i in range(num_words):
+        current_words.append(words[i])
+        # Map word index to approximate timestamp index
+        tick_idx = min(int((i / num_words) * num_ticks), num_ticks - 1)
+        next_tick_idx = min(int(((i + 1) / num_words) * num_ticks), num_ticks - 1)
+
+        pause_duration = (float(hypo.timestamp[next_tick_idx]) - float(hypo.timestamp[tick_idx])) * frame_shift
+
+        if (pause_duration > gap_threshold or i == num_words - 1) and current_words:
+            text = " ".join(current_words)
+            segments.append({
+                "text": text,
+                "start": round(start_time, 3),
+                "end": round(float(hypo.timestamp[tick_idx]) * frame_shift, 3)
+            })
+            full_text.append(text)
+            if i < num_words - 1:
+                start_time = float(hypo.timestamp[next_tick_idx]) * frame_shift
+                current_words = []
+    return segments, " ".join(full_text)
 
 def prepare_output(all_segments, full_text):
     segments: List[TranscriptionSegment] = []
@@ -208,7 +233,7 @@ def prepare_output(all_segments, full_text):
             "seek": 0,
             "start": item["start"],
             "end": item["end"],
-            "text": item["segment"],
+            "text": item["text"],
             "tokens": [],
             "temperature": 0.0,
             "avg_logprob": 0.0,
