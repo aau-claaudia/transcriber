@@ -27,7 +27,7 @@ dependencies = [
     "torchaudio~=2.8.0",
     "transformers>=4.48.0",
     "triton>=3.3.0; sys_platform == 'linux' and platform_machine == 'x86_64'", # only install triton on x86_64 Linux
-    "whisperx @ git+https://github.com/m-bain/whisperx.git@v3.8.4",
+    "whisperx @ git+https://github.com/m-bain/whisperx.git@v3.8.5",
     "openai-whisper @ git+https://github.com/openai/whisper.git@v20250625",
     "ffmpeg-python>=0.2.0",
     "torchcodec~=0.7.0",
@@ -36,6 +36,8 @@ dependencies = [
     "nemo-toolkit[asr]",
     "librosa",
     "soundfile",
+    "pyarrow>=17.0.0",
+    "datasets>=3.0.0",
     "ml-dtypes>=0.3.1,<0.5.0",
     "onnx>=1.15.0,<1.18.0"
 ]
