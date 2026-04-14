@@ -126,6 +126,10 @@ class TestTranscriptionOutput(unittest.TestCase):
 
         print("Verifying output generated from nvidia/parakeet...")
         expected_output = read_file_as_string(self.dialogue_parakeet_output_path)
+        print("Expected output:")
+        print(expected_output)
+        print("Actual output:")
+        print(self.generated_output_dialogue_parakeet)
         self.compare_fuzzy(expected_output, self.generated_output_dialogue_parakeet, 0.88)
 
         # Verify the speaker has been created properly
