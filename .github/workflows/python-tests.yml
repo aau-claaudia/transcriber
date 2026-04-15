@@ -40,11 +40,7 @@ jobs:
           mkdir -p $HOME/.cache/torch/pyannote
           hf auth login --token ${{ secrets.HF_TOKEN }}
           hf download pyannote/speaker-diarization-community-1 --cache-dir $HOME/.cache/torch/pyannote
-          pip install --no-cache-dir "${{ github.workspace }}"
           pip install --no-cache-dir -e "${{ github.workspace }}"
-          alignment_py=$(python -c "import whisperx, os; print(os.path.join(os.path.dirname(whisperx.__file__), 'alignment.py'))")
-          sed -i 's/^    tokens = torch\.tensor(tokens) if not isinstance(tokens, torch\.Tensor) else tokens$/    tokens = torch.tensor([0] if len(tokens) == 0 else tokens) if not isinstance(tokens, torch.Tensor) else tokens/' "$alignment_py"
-          grep "tokens = torch" "$alignment_py"
           echo "TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD=true" >> $GITHUB_ENV
 
       # Step 5: Run transcriber to generate output files for end-to-end test
@@ -54,6 +50,7 @@ jobs:
         run: |
           cd "${{ github.workspace }}"
           python app.py -o ./tests/output -d tests/resources/end2end/input -m small --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest
+          python app.py -o ./tests/output -d tests/resources/end2end/input -m parakeet --verbose --threads 4 --merge_speakers --no-cuda --no-mps --job_name e2etest2
 
       # Step 6: Run application tests
       - name: Run application tests

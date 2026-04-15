@@ -39,11 +39,7 @@ Activate the environment.
 ```bash
 source .venv/bin/activate
 ```
-Install the dependencies.
-```bash
-pip install .
-```
-Install the aau-whisper package.
+Install the dependencies and the aau-whisper package.
 ```bash
 pip install -e .
 ```

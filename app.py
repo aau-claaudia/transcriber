@@ -17,7 +17,7 @@ from whispaau.utils import is_speaker_diarization_supported
 from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
 import os
-
+from whispaau.transcription import transcribe
 
 def cli(args: dict[str, Any]) -> None:
     job_name = args.get("job_name")
@@ -64,11 +64,6 @@ def cli(args: dict[str, Any]) -> None:
 
     files = args.get("input")
 
-    start_time = perf_counter_ns()
-    model = whisper.load_model(model_name, device=device)
-
-    log.log_model_loading(model_name, start_time, perf_counter_ns())
-
     output_format = args.pop("output_format")
     writer = get_writer(output_format, output_dir, WRITERS)
     merge_writer = get_writer(output_format, output_dir, MERGED_SPEAKERS_WRITERS)
@@ -88,7 +83,6 @@ def cli(args: dict[str, Any]) -> None:
             file,
             output_dir,
             model_name,
-            model,
             device,
             use_cuda,
             writer,
@@ -101,16 +95,19 @@ def cli(args: dict[str, Any]) -> None:
     if args.get("transcriber_gui"):
         # If running from the transcriber GUI the user can have multiple runs with different models
         # Get all available model names
-        whisper_model_names = whisper.available_models()
+        all_models = []
+        for model in whisper.available_models():
+            all_models.append(model)
+        all_models.append("parakeet")
         # Include files for all model names
         files_to_pack = [
         path
-        for whisper_model_name in whisper_model_names
-        for path in output_dir.glob(f"*_{whisper_model_name}_*")
+        for transcription_model_name in all_models
+        for path in output_dir.glob(f"*_{transcription_model_name}*")
         if path.is_file()
         ]
     else:
-        files_to_pack = [path for path in output_dir.glob(f"*_{model_name}_*") if path.is_file()]
+        files_to_pack = [path for path in output_dir.glob(f"*_{model_name}*") if path.is_file()]
 
     # Pack everything into a process_name.zip
     job_name_directory = Path(job_name)
@@ -127,7 +124,6 @@ def process_file(
     file: Path,
     output_dir,
     model_name,
-    model,
     device,
     use_cuda,
     writer,
@@ -137,68 +133,71 @@ def process_file(
     options: dict[str, Any],
     speaker_params,
 ) -> None:
-    log.log_file_start(file, device)
+    duration: float = log.log_file_start(file, device)
     start_time = perf_counter_ns()
 
-    # 1. Transcribe with original whisper
-    transcribed_result: dict[str, Any] = model.transcribe(
-        file.resolve().as_posix(), **trans_arguments
-    )
-    language = transcribed_result["language"]
+    transcribed_result = transcribe(model_name, file, trans_arguments, device, log, duration)
 
-    result: dict[str, Any] = {}
-    # check if speaker diarization is supported for this language
-    if is_speaker_diarization_supported(language):
-        # 2. Align whisper output
-        audio = whisperx.load_audio(file.resolve().as_posix())
-        model_a, metadata = whisperx.load_align_model(language_code=language, device=device)
-        aligned_result = whisperx.align(transcribed_result["segments"], model_a, metadata, audio, device, return_char_alignments=False)
-        # garbage collect memory
-        gc.collect()
-        if use_cuda:
-            torch.cuda.empty_cache()
-        del model_a
+    if "segments" in transcribed_result:
+        language = transcribed_result["language"]
 
-        # 3. Assign speaker labels
-        # Initialize the diarization pipeline
-        diarize_model = whisperx.diarize.DiarizationPipeline(device=device, cache_dir=os.environ.get('PYANNOTE_CACHE_DIR'))
-        diarize_segments = diarize_model(audio, **speaker_params)
-        result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
-        result["language"] = language
+        result: dict[str, Any] = {}
+        # check if speaker diarization is supported for this language
+        if is_speaker_diarization_supported(language):
+            # 2. Align whisper output
+            audio = whisperx.load_audio(file.resolve().as_posix())
+            model_a, metadata = whisperx.load_align_model(language_code=language, device=device)
+            aligned_result = whisperx.align(transcribed_result["segments"], model_a, metadata, audio, device, return_char_alignments=False)
+            # garbage collect memory
+            gc.collect()
+            if use_cuda:
+                torch.cuda.empty_cache()
+            del model_a
 
-        # transfer model specific attributes from whisper transcription to the diarized segments array
-        transfer_model_attributes(transcribed_result["segments"], result["segments"])
-    else:
-        # use whisper transcription output without speaker diarization
-        result = transcribed_result
-        speaker_merge_enabled = False
-        print(f"Speaker diarization is disabled. There is no alignment model for this language.")
+            # 3. Assign speaker labels
+            # Initialize the diarization pipeline
+            diarize_model = whisperx.diarize.DiarizationPipeline(device=device, cache_dir=os.environ.get('PYANNOTE_CACHE_DIR'))
+            diarize_segments = diarize_model(audio, **speaker_params)
+            result = whisperx.assign_word_speakers(diarize_segments, aligned_result)
+            result["language"] = language
 
-    # write output files
-    output_file = (
-        output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}"
-    )
-    if not result["segments"]:
-        # empty output from the whisper algorithm
-        print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
-    else:
-        writer(
-            result,
-            output_file,
-            options,
+            # transfer model specific attributes from transcription to the diarized segments array
+            transfer_model_attributes(transcribed_result["segments"], result["segments"])
+        else:
+            # use transcription output without speaker diarization
+            result = transcribed_result
+            speaker_merge_enabled = False
+            print(f"Speaker diarization is disabled. There is no alignment model for this language.")
+
+        # write output files
+        lang_suffix = "" if "parakeet" in model_name.lower() else f"_{result.get('language', '--')}"
+        output_file = (
+            output_dir / f"{file.stem}_{model_name}{lang_suffix}"
         )
-        # if speaker_merge_enabled then also write merged file formats
-        if speaker_merge_enabled and (merge_writer is not None):
-            output_file_merged_speakers = (
-                    output_dir / f"{file.stem}_{model_name}_{result.get('language', '--')}_merged"
+        if not result["segments"]:
+            # empty output from the transcription algorithm
+            print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
+        else:
+            writer(
+                result,
+                output_file,
+                options,
             )
-            merge_writer(
-                merge_speakers(result),
-                output_file_merged_speakers,
-                options
-            )
-            # reset the merge speaker data
-            reset_merge_speaker_data()
+            # if speaker_merge_enabled then also write merged file formats
+            if speaker_merge_enabled and (merge_writer is not None):
+                output_file_merged_speakers = (
+                        output_dir / f"{file.stem}_{model_name}{lang_suffix}_merged"
+                )
+                merge_writer(
+                    merge_speakers(result),
+                    output_file_merged_speakers,
+                    options
+                )
+                # reset the merge speaker data
+                reset_merge_speaker_data()
+    else:
+        # empty output from the transcription algorithm
+        print("The transcription algorithm generated empty output. This usually happens due to inaudible or insufficient audio.")
 
     log.log_file_end(file, start_time, perf_counter_ns())
 

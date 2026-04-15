@@ -67,14 +67,16 @@ class Logger:
         self.logger.debug("Processing #%s..", len(files))
         self.flush_stdout()
 
-    def log_file_start(self, file: Path, device):
+    def log_file_start(self, file: Path, device) -> float:
+        duration: float = file_duration(file)
         self.logger.debug(
             "Starting %s duration: %d seconds on device: %s",
             file.name,
-            file_duration(file),
+            duration,
             device,
         )
         self.flush_stdout()
+        return duration
 
     def log_file_end(self, file: Path, start_time: int, end_time: int):
         self.logger.debug(
@@ -87,6 +89,9 @@ class Logger:
     def log_finished(self, filename: str):
         self.logger.debug("%s is finished", filename)
         self.flush_stdout()
+
+    def get_logger(self):
+        return self.logger
 
 
 if __name__ == "__main__":
