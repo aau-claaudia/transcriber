@@ -12,6 +12,7 @@ from whispaau.logging import Logger
 from abc import ABC, abstractmethod
 import whisper
 import nemo.collections.asr as nemo_asr
+from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 
 
 class TranscriptionSegment(TypedDict):
@@ -64,6 +65,8 @@ def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: L
             _model_cache[cache_key] = WhisperTranscription(model_name, device, log, duration)
         elif "parakeet" in model_family:
             _model_cache[cache_key] = ParakeetTranscription(model_name, device, log, duration)
+        elif "hviske" in model_family:
+            _model_cache[cache_key] = HviskeTranscription(model_name, device, log, duration)
         else:
             log.get_logger().error(f"Unknown model family for model_name: {model_name}")
             raise ValueError(f"Unknown model family for model_name: {model_name}")
@@ -86,6 +89,62 @@ class WhisperTranscription(TranscriptionService):
             file.resolve().as_posix(), **trans_arguments
         )
         return transcription
+
+
+class HviskeTranscription(TranscriptionService):
+    """ Transcription with the fine tuned Danish model syvai/hviske-v3-conversation from syv.ai """
+    def __init__(self, model_name: str, device, log: Logger, duration: float):
+        self.log = log
+        self.model_name = model_name
+        self.model_id = "syvai/hviske-v3-conversation"
+        self.torch_dtype = torch.float16 if torch.cuda.is_available() else torch.float32
+        start_time = perf_counter_ns()
+        self.model = AutoModelForSpeechSeq2Seq.from_pretrained(
+            self.model_id, dtype=self.torch_dtype, use_safetensors=True
+        )
+        self.model.to(device)
+
+        self.processor = AutoProcessor.from_pretrained(self.model_id)
+
+        self.pipe = pipeline(
+            "automatic-speech-recognition",
+            model=self.model,
+            tokenizer=self.processor.tokenizer,
+            feature_extractor=self.processor.feature_extractor,
+            max_new_tokens=300,
+            #chunk_length_s=30, TODO: er dette parameter nødvendigt ved long form transcription? test
+            batch_size=1,
+            dtype=self.torch_dtype,
+            device=device,
+        )
+        self.log.log_model_loading(self.model_name, start_time, perf_counter_ns())
+
+    def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
+        audio = convert_to_16k_mono_audio(file.resolve().as_posix())
+
+        raw_result = self.pipe(audio, return_timestamps=True)
+        segments: List[TranscriptionSegment] = []
+        for i, chunk in enumerate(raw_result.get("chunks", [])):
+            start, end = chunk["timestamp"]
+            segments.append({
+                "id": i,
+                "seek": 0,
+                "start": round(float(start), 3) if start is not None else 0.0,
+                "end": round(float(end), 3) if end is not None else round(float(start) + 0.5, 3) if start is not None else 0.0,
+                "text": chunk["text"],
+                "tokens": [],
+                "temperature": 0.0,
+                "avg_logprob": 0.0,
+                "compression_ratio": 0.0,
+                "no_speech_prob": 0.0,
+            })
+
+        result: TranscriptionResult = {
+            "text": raw_result["text"],
+            "segments": segments,
+            "language": "da",
+        }
+        return result
 
 
 class ParakeetTranscription(TranscriptionService):
