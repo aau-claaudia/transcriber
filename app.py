@@ -133,7 +133,7 @@ def process_file(
     options: dict[str, Any],
     speaker_params,
 ) -> None:
-    duration: float = log.log_file_start(file, device)
+    duration: float = log.log_file_start(file, device, model_name)
     start_time = perf_counter_ns()
 
     transcribed_result = transcribe(model_name, file, trans_arguments, device, log, duration)
