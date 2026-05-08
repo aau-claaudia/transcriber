@@ -18,6 +18,7 @@ from whispaau.writers import merge_speakers, reset_merge_speaker_data
 import torch
 import os
 from whispaau.transcription import transcribe
+from whispaau.file_preprocessor import pre_proces
 
 def cli(args: dict[str, Any]) -> None:
     job_name = args.get("job_name")
@@ -121,7 +122,7 @@ def cli(args: dict[str, Any]) -> None:
 
 def process_file(
     log: Logger,
-    file: Path,
+    input_file: Path,
     output_dir,
     model_name,
     device,
@@ -133,6 +134,10 @@ def process_file(
     options: dict[str, Any],
     speaker_params,
 ) -> None:
+    file_ok, file = pre_proces(input_file, log)
+    if not file_ok:
+        log.get_logger().info("The file format is not supported and could not be converted to .mp3.")
+        return
     duration: float = log.log_file_start(file, device, model_name)
     start_time = perf_counter_ns()
 
