@@ -48,7 +48,7 @@ def get_field_names(result: dict) -> list[str]:
     # make sure that the CSV header contains the 'speaker' header even though the first line has no speaker
     # if there is no speaker in the segment, try to take the keys from the next line
     # we don't want to hard code the speaker key into a fixed position in the header list
-    for i in range(len(result)):
+    for i in range(len(result["segments"])):
         if 'speaker' in result["segments"][i]:
             return list(result["segments"][i].keys())
     # if none of the lines had a speaker then just return the keys from the first line

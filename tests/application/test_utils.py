@@ -14,6 +14,6 @@ class TestUtils(unittest.TestCase):
         assert is_speaker_diarization_supported("it") == True
         assert is_speaker_diarization_supported("da") == True
         assert is_speaker_diarization_supported("no") == True
+        assert is_speaker_diarization_supported("id") == True # Indonesian alignment model added in whisperx-3.8.6
 
-        assert is_speaker_diarization_supported("haw") == False
-        assert is_speaker_diarization_supported("id") == False
+        assert is_speaker_diarization_supported("haw") == False # No alignment model
