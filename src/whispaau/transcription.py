@@ -174,7 +174,7 @@ class ParakeetTranscription(TranscriptionService):
                 )
                 if hypotheses and len(hypotheses) > 0:
                     segments, full_text = prepare_segments(hypotheses)
-                    final_full_text.join(full_text)
+                    final_full_text += " " + full_text
 
                     for segment in segments:
                         segment['start'] += chunk_info['start_time']
@@ -191,17 +191,38 @@ def prepare_segments(hypotheses):
     segments = []
     full_text = []
     hypo = hypotheses[0]
-    print(hypotheses[0])
     # Parakeet models typically have a frame shift of 0.08s (80ms)
     frame_shift = 0.08
     gap_threshold = 1.0  # Split segment if silence is > 1.0s
 
-    words = hypo.text.split()
+    words = hypo.text.split() if hypo.text else []
     num_words = len(words)
-    num_ticks = len(hypo.timestamp)
+
+    if num_words == 0:
+        return segments, ""
+
+    # Some hypotheses may miss timestamp data entirely. Keep processing text with
+    # default timings instead of crashing.
+    raw_timestamps = getattr(hypo, "timestamp", [])
+    timestamps = []
+    for ts in raw_timestamps:
+        try:
+            timestamps.append(float(ts))
+        except (TypeError, ValueError):
+            continue
+
+    num_ticks = len(timestamps)
+    if num_ticks == 0:
+        text = " ".join(words)
+        segments.append({
+            "text": text,
+            "start": 0.0,
+            "end": 0.0,
+        })
+        return segments, text
 
     current_words = []
-    start_time = float(hypo.timestamp[0]) * frame_shift
+    start_time = timestamps[0] * frame_shift
 
     for i in range(num_words):
         current_words.append(words[i])
@@ -209,18 +230,21 @@ def prepare_segments(hypotheses):
         tick_idx = min(int((i / num_words) * num_ticks), num_ticks - 1)
         next_tick_idx = min(int(((i + 1) / num_words) * num_ticks), num_ticks - 1)
 
-        pause_duration = (float(hypo.timestamp[next_tick_idx]) - float(hypo.timestamp[tick_idx])) * frame_shift
+        pause_duration = (timestamps[next_tick_idx] - timestamps[tick_idx]) * frame_shift
 
         if (pause_duration > gap_threshold or i == num_words - 1) and current_words:
             text = " ".join(current_words)
+            end_time = timestamps[tick_idx] * frame_shift
+            if end_time < start_time:
+                end_time = start_time
             segments.append({
                 "text": text,
                 "start": round(start_time, 3),
-                "end": round(float(hypo.timestamp[tick_idx]) * frame_shift, 3)
+                "end": round(end_time, 3)
             })
             full_text.append(text)
             if i < num_words - 1:
-                start_time = float(hypo.timestamp[next_tick_idx]) * frame_shift
+                start_time = timestamps[next_tick_idx] * frame_shift
                 current_words = []
     return segments, " ".join(full_text)
 
