@@ -1,5 +1,6 @@
 import os
 import tempfile
+import gc
 from pathlib import Path
 from typing import List, TypedDict, Any, Dict, Union, Tuple
 from time import perf_counter_ns
@@ -48,7 +49,18 @@ class TranscriptionService(ABC):
 _model_cache: Dict[Union[str, Tuple[str, str]], "TranscriptionService"] = {}
 
 
-def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: Logger, duration: float):
+def _is_cuda_device(device: Any) -> bool:
+    return str(device).startswith("cuda")
+
+
+def _release_cuda_memory(device: Any) -> None:
+    if _is_cuda_device(device) and torch.cuda.is_available():
+        # Synchronize first so queued kernels complete before cache cleanup.
+        torch.cuda.synchronize(device)
+        torch.cuda.empty_cache()
+
+
+def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: Logger):
     """
     Instantiate and use the correct transcription class based on the model_name.
     This function uses a cache to store and reuse transcriber instances, ensuring
@@ -57,13 +69,28 @@ def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: L
     transcriber: TranscriptionService
     model_family = model_name.lower()
 
+    # Reusing the same Parakeet CUDA model across files can leave stale GPU state,
+    # especially after decoder failures. Use a fresh instance per file on CUDA.
+    disable_cache_for_parakeet_cuda = "parakeet" in model_family and _is_cuda_device(device)
+
+    if disable_cache_for_parakeet_cuda:
+        transcriber = ParakeetTranscription(model_name, device, log)
+        try:
+            return transcriber.transcribe(file, trans_arguments)
+        finally:
+            # Drop model refs deterministically between files.
+            if hasattr(transcriber, "model"):
+                del transcriber.model
+            gc.collect()
+            _release_cuda_memory(device)
+
     cache_key: Union[str, Tuple[str, str]] = (model_name, str(device))
     if cache_key not in _model_cache:
         # This factory determines which transcription strategy to use.
         if model_family in whisper.available_models():
-            _model_cache[cache_key] = WhisperTranscription(model_name, device, log, duration)
+            _model_cache[cache_key] = WhisperTranscription(model_name, device, log)
         elif "parakeet" in model_family:
-            _model_cache[cache_key] = ParakeetTranscription(model_name, device, log, duration)
+            _model_cache[cache_key] = ParakeetTranscription(model_name, device, log)
         else:
             log.get_logger().error(f"Unknown model family for model_name: {model_name}")
             raise ValueError(f"Unknown model family for model_name: {model_name}")
@@ -74,7 +101,7 @@ def transcribe(model_name: str, file: Path, trans_arguments: Any, device, log: L
 
 class WhisperTranscription(TranscriptionService):
     """ Transcription with openai whisper models """
-    def __init__(self, model_name: str, device, log: Logger, duration: float):
+    def __init__(self, model_name: str, device, log: Logger):
         self.log = log
         self.model_name = model_name
         start_time = perf_counter_ns()
@@ -90,35 +117,41 @@ class WhisperTranscription(TranscriptionService):
 
 class ParakeetTranscription(TranscriptionService):
     """ Transcription with the NVIDIA model: nvidia/parakeet-tdt-0.6b-v3 """
-    def __init__(self, model_name: str, device, log: Logger, duration: float):
+    def __init__(self, model_name: str, device, log: Logger):
         self.log = log
         self.model_name = model_name
-        self.duration = duration
+        self.device = device
         start_time = perf_counter_ns()
         self.model = nemo_asr.models.ASRModel.from_pretrained(model_name="nvidia/parakeet-tdt-0.6b-v3", map_location=device)
         self.log.log_model_loading(self.model_name, start_time, perf_counter_ns())
         self.sample_rate = 16000 # 16kHz
         self.chunk_length_s: int = 30 # 30 seconds
         self.buffering_threshold: int = 300 # 5 minutes
-        if duration > 30:
-            log.get_logger().info("Audio longer than 30 seconds, using long form transcription.")
-            # updating self-attention model of fast-conformer encoder
-            # setting attention left and right context sizes to 256
-            self.model.change_attention_model(self_attention_model="rel_pos_local_attn", att_context_size=[256, 256])
+        self.long_form_configured = False
         self.model = self.model.to(device)
+
+    def _configure_for_duration(self, duration: float) -> None:
+        if duration > 30 and not self.long_form_configured:
+            self.log.get_logger().info("Audio longer than 30 seconds, using long form transcription.")
+            # Update self-attention model of fast-conformer encoder once.
+            self.model.change_attention_model(self_attention_model="rel_pos_local_attn", att_context_size=[256, 256])
+            self.long_form_configured = True
 
     def transcribe(self, file: Path, trans_arguments: Any) -> dict[str, Any]:
         audio = convert_to_16k_mono_audio(file.resolve().as_posix())
+        duration = len(audio) / self.sample_rate
+        self._configure_for_duration(duration)
 
-        if self.duration > self.buffering_threshold:
+        if duration > self.buffering_threshold:
             # if the audio is longer than 5 minutes transcribe in chunks to manage memory consumption
             return self.transcribe_buffered(audio)
         else:
-            hypotheses = self.model.transcribe(
-                audio,
-                batch_size=1,
-                return_hypotheses=True
-            )
+            with torch.inference_mode():
+                hypotheses = self.model.transcribe(
+                    audio,
+                    batch_size=1,
+                    return_hypotheses=True
+                )
             if hypotheses and len(hypotheses) > 0:
                 segments, full_text = prepare_segments(hypotheses)
 
@@ -167,11 +200,12 @@ class ParakeetTranscription(TranscriptionService):
                 self.log.get_logger().info(f"Transcribing chunk {i + 1}/{len(chunks)} (duration: {chunk_info['duration']:.1f}s)...")
                 # Transcribe chunk
                 waveform, sr = torchaudio.load(str(chunk_info['audio_path']))
-                hypotheses = self.model.transcribe(
-                    waveform.squeeze().to(torch.float32).numpy(),
-                    batch_size=1,
-                    return_hypotheses=True,
-                )
+                with torch.inference_mode():
+                    hypotheses = self.model.transcribe(
+                        waveform.squeeze().to(torch.float32).numpy(),
+                        batch_size=1,
+                        return_hypotheses=True,
+                    )
                 if hypotheses and len(hypotheses) > 0:
                     segments, full_text = prepare_segments(hypotheses)
                     final_full_text += " " + full_text

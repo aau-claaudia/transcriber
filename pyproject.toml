@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Transcriber"
-version = "1.20"
+version = "1.21"
 description = "Customised cli for AI transcription"
 authors = [
     {name = "Nikolaj Andersen"},
