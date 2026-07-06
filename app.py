@@ -138,7 +138,7 @@ def process_file(
     if not file_ok:
         log.get_logger().info("The file format is not supported and could not be converted to .mp3.")
         return
-    log.log_file_start(file, device, model_name)
+    log.log_file_start(input_file, device, model_name)
     start_time = perf_counter_ns()
 
     transcribed_result = transcribe(model_name, file, trans_arguments, device, log)

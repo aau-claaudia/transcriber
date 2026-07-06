@@ -1,5 +1,7 @@
 import subprocess
 from pathlib import Path
+import tempfile
+import os
 from whispaau.logging import Logger
 
 """
@@ -16,8 +18,9 @@ def pre_proces(input_file: Path, log: Logger) -> (bool, Path):
         return True, input_file
     else:
         # try to convert file
-        output_path = input_file.with_name(f"{file_name}.mp3")
-        return convert_to_mp3(input_file, output_path, log)
+        temp_dir = tempfile.mkdtemp(prefix="converted_mp3_")
+        output_mp3_path = os.path.join(temp_dir, f"{input_file.stem}.mp3")
+        return convert_to_mp3(input_file, output_mp3_path, log)
 
 def convert_to_mp3(input_file, output_file, log: Logger) -> (bool, Path):
     """
@@ -39,6 +42,7 @@ def convert_to_mp3(input_file, output_file, log: Logger) -> (bool, Path):
         # capture_output=True allows access to the error message if the command fails
         subprocess.run(command, check=True, capture_output=True, text=True)
         log.get_logger().info(f"Successfully converted input file to: {output_file}")
+        log.get_logger().info(f"Running transcription on converted .mp3 file.")
         return True, Path(output_file)
 
     except subprocess.CalledProcessError as e:
