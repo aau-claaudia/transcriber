@@ -20,7 +20,7 @@ The workflow runs on PR's, pushes to branches with a PR and pushes to main.
 ## Setting up transcriber locally
 
 To set up transcriber locally follow these steps.
-Download the models for WhisperX.
+Download the models for WhisperX. (huggingface hub is installed already if the project has been built)
 ```bash
 pip install --no-cache-dir -U "huggingface_hub[cli]"
 mkdir -p $HOME/.cache/torch/pyannote
